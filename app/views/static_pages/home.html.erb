@@ -9,19 +9,19 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  
+<% if user_signed_in? %> 
   <div class="center hero-unit">
   <h1>Welcome to PetBook</h1>
   <h2> you are signed in</h2>
    <%= link_to "see who else is here", users_path, class: "btn btn-large btn-primary" %>
 </div>
+<%end%>
 <% if !user_signed_in? %> 
 <div class="center hero-unit">
-  <h1>Welcome to PetBook</h1>
-
-  <h2>
-   click to 
-  </h2>
+<h1>Welcome to PetBook</h1>
+<h2>
+click to 
+ </h2>
 
   <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
   
