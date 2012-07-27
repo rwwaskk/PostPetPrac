@@ -18,6 +18,8 @@ PostPet::Application.routes.draw do
      get :following, :followers
     end
    end
+ 
+   resources :relationships, :only=>[:create,:destroy]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
