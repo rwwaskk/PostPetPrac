@@ -11,8 +11,8 @@
   </head>
 <% if user_signed_in? %> 
   <div class="unsigned_center">
-  <h1 id="welcome">Welcome Back!</h1>
-  <h2 id="sign_in_h2"> you are signed in</h2>
+  <h1 >Welcome Back!</h1>
+  <h2> you are signed in</h2>
   <% @user ||= current_user %>
    <%= button_to "go to your page", user_path(@user), class: "test" ,:method=>:get%>
 </div>
@@ -24,7 +24,7 @@
     <div class="fadein">  
     <img src="https://lh6.googleusercontent.com/-wUe2TDicTkc/UBNdi8LzzgI/AAAAAAAAAXc/gBvBKjBRHjk/s552/1.jpeg">
     <img src="https://lh3.googleusercontent.com/-HCUJvXKGGBc/UBNdi24YS-I/AAAAAAAAAXo/5fodI3GEpVw/s500/3.jpeg">
-    <img src="https://lh5.googleusercontent.com/-tw9ZyRqsXOc/UBNdixgm83I/AAAAAAAAAXg/sQ2eHeCyAn0/s640/2.jpeg">
+   
     <img src="https://lh6.googleusercontent.com/-4y8gAZdSJn8/UBNdjB0uEBI/AAAAAAAAAX0/OCqwl5Pq8OM/s552/4.jpeg">
     <img src="https://lh6.googleusercontent.com/-fis_ghmykAY/UBNdjHCmJUI/AAAAAAAAAXw/UZgAAard4mU/s552/5.jpeg">
     <img src="https://lh5.googleusercontent.com/-9trkJg2EHu4/UBNdjj7DYAI/AAAAAAAAAX4/l-A22v_cqvk/s552/6.jpeg">

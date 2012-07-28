@@ -12,6 +12,9 @@
 </div>
 
  <div id="sign_in">
+ <% if !@user.microposts.any? %>
+ <h3>This user does not have any post yet </h3>
+ <%end%>
     <% if @user.microposts.any? %>
       <h3>posts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">

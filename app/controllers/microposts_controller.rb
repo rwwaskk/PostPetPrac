@@ -12,9 +12,10 @@ def new
     
     def create
     @micropost = current_user.microposts.build(params[:micropost])
+    @user=current_user
     if @micropost.save
       flash[:success] = "post created!"
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       render 'static_pages/home'
     end

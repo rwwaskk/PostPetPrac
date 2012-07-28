@@ -1,7 +1,14 @@
-@import "bootstrap";
+/*@import "bootstrap";
 
 /* universal */
+h1{
 
+font:30px Papyrus;
+}
+h2{
+
+font:italic 20px Papyrus;
+}
 header#navigation{
 
 text-align:right;
@@ -27,9 +34,12 @@ h2#sign_in_h2{
 color:green;
 }
 #f_info{
-position:absolute;
-margin-top:-230px;
-margin-left:800px;
+	border:solid 0px #000000;
+	position: fixed;
+	top:20%;
+	left:120%;
+    margin-left:-381px;
+
 }
 
 .unsigned_center{
@@ -72,9 +82,22 @@ font-size: 18px;
      -moz-border-radius: 5px;
           border-radius: 5px;
 }
-.down{
+a.down{
 
 color:lightgreen;
+text-decoration: none;
+}
+
+
+.about{
+position:absolute;
+bottom:-40px;
+margin-left:250px;
+}
+a.about1{
+color:lightgreen;
+text-decoration: none;
+padding-left:10px;
 }
 html {
   overflow-y: scroll;
@@ -105,7 +128,7 @@ textarea {
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid $grayLighter;
+    border-left: 1px ;
     color: gray;
     &:first-child {
       padding-left: 0;
@@ -113,7 +136,7 @@ textarea {
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
+      
     }
   }
   strong {

@@ -1,4 +1,6 @@
-<%= form_for(@micropost) do |f| %>
+<% @user ||= current_user %>
+
+<%= form_for @micropost do |f| %>
  
   <div class="field">
   
