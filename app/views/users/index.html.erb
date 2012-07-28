@@ -13,13 +13,13 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', user,class:"down" %></td>
+    <td><%= link_to 'Edit', edit_user_path(user),class:"down"  %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' },class:"down"  %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'go back to home page', '/' %>
+<%= link_to 'go back to home page', '/',class:"down"  %>

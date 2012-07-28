@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<div id="sign_in">
 <p>
   <b>Name:</b>
   <%= @user.name %>
@@ -9,24 +9,27 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
+</div>
 
-<%= link_to 'update  your status', new_micropost_path %>
- <div class="span8">
+ <div id="sign_in">
     <% if @user.microposts.any? %>
       <h3>posts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
-     
-    <% end %>
+     <% end %>
   </div>
   <br/>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+
+<%= link_to 'Edit', edit_user_path(@user) ,class:"down"%> |
+<%= link_to 'Back', users_path,class:"down" %>
+<%= link_to 'update  your status', new_micropost_path,class:"down" %>
+<div id="f_info">
 <%= render 'shared/stats' %>
 <%= render 'shared/follow' %>
   <% if current_user.following?(@user) %>
  <%= render 'shared/unfollow' %> 
 <%end%>
-  
+</div>  
   
