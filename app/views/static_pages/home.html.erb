@@ -18,14 +18,43 @@
 <%end%>
 <% if !user_signed_in? %> 
 <div class="center hero-unit">
-<h1>Welcome to PetBook</h1>
-<h2>
-click to 
- </h2>
 
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
   
-</div>
+        <div id="slideshow">  
+            <div class="slides">  
+                <ul>  
+                    <li id="slide-one">  
+                        
+                    <div>
+     <img src="https://lh6.googleusercontent.com/-wUe2TDicTkc/UBNdi8LzzgI/AAAAAAAAAXc/gBvBKjBRHjk/s552/1.jpeg">
+   </div>
+                    </li>  
+                    <li id="slide-two">  
+                       
+                        <div>
+     <img src="https://lh3.googleusercontent.com/-HCUJvXKGGBc/UBNdi24YS-I/AAAAAAAAAXo/5fodI3GEpVw/s500/3.jpeg">
+   </div>  
+                    </li>     
+                    <li id="slide-three">  
+                        
+                      <div>
+     <img src="https://lh5.googleusercontent.com/-tw9ZyRqsXOc/UBNdixgm83I/AAAAAAAAAXg/sQ2eHeCyAn0/s640/2.jpeg">
+   </div>  
+                    </li>                  
+                </ul>  
+            </div>  
+            <ul class="slides-nav">  
+                <li><a href="#slide-one">mia</a></li>  
+                <li><a href="#slide-two">mia</a></li>  
+                <li><a href="#slide-three">mia</a></li>  
+            </ul>  
+        </div>   
+ 
+   
+    
+
+  
+  </div>
 <%end%>
 
 </html>
