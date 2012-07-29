@@ -17,6 +17,9 @@ PostPet::Application.routes.draw do
    match '/' => 'static_pages#home'
   
    resources :microposts
+   post 'microposts/:id'=>'microposts#add_comment'
+  
+   resources :microcomments
     resources :users do
     member do
      get :following, :followers

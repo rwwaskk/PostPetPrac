@@ -1,0 +1,22 @@
+<%= javascript_include_tag "rails" %>
+<%=@micropost.content%>
+<%=link_to @micropost.user.name,user_path(@micropost.user)%>
+ <span class="timestamp">
+    Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
+</span>
+
+
+
+ <% if @micropost.microcomments.any? %>
+      <h3>comments (<%= @micropost.microcomments.count %>)</h3>
+  <%= render @micropost.microcomments%>
+ <% end %>
+
+<%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment do |f| %>
+ <div class="field">
+   <%= f.text_area :content, placeholder: "enter new comment" %>
+ </div>
+<%= f.submit "comment", class: "test" %>
+<% end %>
+
+ <%= link_to 'Back', users_path ,class:'down'%>

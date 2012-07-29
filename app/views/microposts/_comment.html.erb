@@ -1,0 +1,7 @@
+<%=@micropost.content%>
+<%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment do |f| %>
+ <div class="field">
+   <%= f.text_area :content, placeholder: "enter new comment" %>
+ </div>
+<%= f.submit "comment", class: "test" %>
+<% end %>

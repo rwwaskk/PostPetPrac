@@ -1,0 +1,9 @@
+<li>
+  <span class="content"><%= microcomment.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(microcomment.created_at)  unless microcomment.created_at.nil?%> ago.
+  </span>
+  <%=link_to microcomment.user.name,user_path(microcomment.user) unless microcomment.user.nil? %> 
+
+ </li>
+ 

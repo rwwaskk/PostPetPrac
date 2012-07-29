@@ -24,15 +24,18 @@
   </div>
   <br/>
 
-
+<div id="stats">
 <%= link_to 'Edit', edit_user_path(@user) ,class:"down"%> |
 <%= link_to 'Back', users_path,class:"down" %>
 <%= link_to 'update  your status', new_micropost_path,class:"down" %>
 <div id="f_info">
 <%= render 'shared/stats' %>
+<% if !current_user.following?(@user) %>
 <%= render 'shared/follow' %>
-  <% if current_user.following?(@user) %>
- <%= render 'shared/unfollow' %> 
 <%end%>
+<% if current_user.following?(@user) %>
+<%= render 'shared/unfollow' %> 
+<%end%>
+</div>
 </div>  
   

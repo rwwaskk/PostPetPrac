@@ -1,0 +1,2 @@
+module MicrocommentsHelper
+end
