@@ -1,11 +1,4 @@
 class MicrocommentsController < ApplicationController
-
-def
-microcomments=Microcomments.all
-end
-
-
-
 def new
 
 
@@ -13,8 +6,6 @@ def new
       format.html # new.html.erb
       format.json { render json: @micropost }
     end
-    
-
 end
 
 def create
