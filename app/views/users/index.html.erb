@@ -14,8 +14,9 @@
     <td><%= user.name %></td>
     <td><%= user.email %></td>
     <td><%= link_to 'Show', user,class:"down" %></td>
-    <td><%= link_to 'Edit', edit_user_path(user),class:"down"  %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' },class:"down"  %></td>
+    <% if user==current_user%>
+   <td><%= link_to 'Edit', edit_user_path(user),class:"down"  %></td><%end%>
+   <%# <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' },class:"down"  %></td>%>
   </tr>
 <% end %>
 </table>

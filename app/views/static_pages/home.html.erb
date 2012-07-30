@@ -15,10 +15,12 @@
   <h2> you are signed in</h2>
   <% @user ||= current_user %>
    <%= button_to "go to your page", user_path(@user), class: "test" ,:method=>:get%>
-   From people you have followed:
-   <%=render @feed_items%>
-   
 </div>
+<div class="feed">
+<h2> From people you have followed:</h2>
+   <%=render @feed_items%>
+ </div>  
+
 <%end%>
 <% if !user_signed_in? %> 
 <div class="unsigned_center">

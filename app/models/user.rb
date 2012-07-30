@@ -26,6 +26,7 @@ validates_uniqueness_of :name, :email, :case_sensitive => false
   
   def feed
   Micropost.from_users_followed_by(self)
+  
   end
   
   

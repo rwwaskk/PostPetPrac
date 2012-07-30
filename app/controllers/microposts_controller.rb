@@ -1,6 +1,13 @@
 class MicropostsController < ApplicationController
    
-   
+   def destroy
+   @user=current_user
+   @micropost=Micropost.find_by_id(params[:id])
+   if @micropost.destroy
+   flash[:success] = "post deleted!"
+      	redirect_to user_path(@user)
+      	end
+   end
    
   
 	

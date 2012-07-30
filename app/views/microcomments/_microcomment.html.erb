@@ -4,6 +4,13 @@
     Posted <%= time_ago_in_words(microcomment.created_at)  unless microcomment.created_at.nil?%> ago.
   </span>
   <%=link_to microcomment.user.name,user_path(microcomment.user) unless microcomment.user.nil? %> 
+  <% if !microcomment.user.nil?%> 
+   <% if current_user==microcomment.user %> 
+  
+  <%=link_to "Delete",microcomment_path(microcomment),:method => :delete%>
+  
+ <%end%>
+ <%end%>
 
  </li>
  

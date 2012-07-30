@@ -1,4 +1,20 @@
 class MicrocommentsController < ApplicationController
+
+  def destroy
+   @user=current_user
+   @microcomment=Microcomment.find_by_id(params[:id])
+   if @microcomment.destroy
+   flash[:success] = "comment deleted!"
+      	redirect_to user_path(@user)
+      	end
+   end
+   
+
+
+
+
+
+
 def new
 
 
