@@ -1,6 +1,6 @@
 class Micropost < ActiveRecord::Base
-
-  attr_accessible :content, :user_id
+has_attached_file :photo
+  attr_accessible :content, :user_id,:photo
   has_many :microcomments
   belongs_to :user
   validates :user_id, :presence => true

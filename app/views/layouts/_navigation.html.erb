@@ -1,25 +1,15 @@
 
 <ul class="nav">
-
-  <% if user_signed_in? %>
-    
-       
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' ,class:"down"%>  
-        
- 
-  <% else %>
-    
-    <%= link_to 'Login', new_user_session_path,class:"down" %>  
-   
-  <% end %>
-  <% if user_signed_in? %>
-   
-
-    <%= link_to 'Edit account', edit_user_registration_path,class:"down" %>
-    
-  <% else %>
-   
-    <%= link_to 'Sign up', new_user_registration_path,class:"down" %>
-    
-  <% end %>
+ <% if user_signed_in? %>
+  <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' ,class:"down"%>  
+ <% else %>
+ <%= link_to 'Login', new_user_session_path,class:"down" %>  
+ <% end %>
+ <% if user_signed_in? %>
+ <%= link_to 'Edit account', edit_user_registration_path,class:"down" %>
+ <% else %>
+ <%= link_to 'Sign up', new_user_registration_path,class:"down" %>
+ <% end %>
 </ul>
+
+

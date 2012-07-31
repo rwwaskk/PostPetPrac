@@ -28,11 +28,8 @@ border:5px solid lightgreen;
 margin:10px;
 }
 
-#stats{
 
 
-
-}
 h1#welcome{
 color:green;
 }
@@ -148,6 +145,17 @@ textarea {
 }
 
 .stats {
+
+
+width: 200px; 
+height: 190px; 
+position:absolute;
+ 
+right: -40pt; 
+top: 120px; 
+margin: 0px; 
+display: block;
+
   overflow: auto;
   a {
     float: left;

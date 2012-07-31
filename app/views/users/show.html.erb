@@ -13,13 +13,7 @@
 
  <div id="sign_in">
  
- <div class="avatar">
- <%if !@user.photo.url.nil?%>
- <h2>your current profile photo</h2>
- <%= image_tag @user.photo.url%>
- <%end%>
- </div>
- 
+
  
  <% if !@user.microposts.any? %>
  <h3>This user does not have any post yet </h3>
@@ -37,14 +31,10 @@
 <%= link_to 'Edit', edit_user_path(@user) ,class:"down"%> |
 <%= link_to 'Back', users_path,class:"down" %>
 <%= link_to 'update  your status', new_micropost_path,class:"down" %>
-<div id="f_info">
+
+
 <%= render 'shared/stats' %>
-<% if !current_user.following?(@user) %>
-<%= render 'shared/follow' %>
-<%end%>
-<% if current_user.following?(@user) %>
-<%= render 'shared/unfollow' %> 
-<%end%>
-</div>
+
+
 </div>  
   

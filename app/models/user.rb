@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
-has_attached_file :photo
+has_attached_file :photo,
+ :styles => {
+    :thumb=> "100x100#",
+    :small  => "150x150>",
+    :medium => "300x300>",
+    :large =>   "400x400>" }
 
 validates_presence_of :name
 has_many :microposts

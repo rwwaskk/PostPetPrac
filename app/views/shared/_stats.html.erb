@@ -1,7 +1,13 @@
 <% @user ||= current_user %>
 <div class="stats">
 
-  <a href="<%= following_user_path(@user) %>">
+
+ <%if !@user.photo.url.nil?%>
+ 
+ <%= image_tag @user.photo.url(:small)%>
+ <%end%>
+ 
+ <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
     <%= @user.followed_users.count %>
     </strong>
@@ -13,5 +19,23 @@
     </strong>
     followers
   </a>
+ <br></br>
+ <% if !current_user.following?(@user) %> 
  
+ 
+ <%= form_for(current_user.relationships.build(followed_id: @user.id),
+             remote: true) do |f| %>
+<div><%= f.hidden_field :followed_id %></div>
+<%= f.submit "Follow", class: "test" %>
+<% end %>
+
+<%end%>
+
+<% if current_user.following?(@user) %>
+<%= form_for(current_user.relationships.find_by_followed_id(@user),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <%= f.submit "Unfollow", class: "test" %>
+<% end %>
+<% end %>
 </div>
