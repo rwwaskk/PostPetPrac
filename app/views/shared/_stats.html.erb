@@ -2,7 +2,7 @@
 <div class="stats">
 
 
- <%if !@user.photo.url.nil?%>
+ <% if !(@user.photo.url=="/photos/original/missing.png")%>
  
  <%= image_tag @user.photo.url(:small)%>
  <%end%>
