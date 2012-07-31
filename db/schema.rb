@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120729060443) do
+ActiveRecord::Schema.define(:version => 20120731012942) do
 
   create_table "microcomments", :force => true do |t|
     t.string   "content"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(:version => 20120729060443) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.string   "photo"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

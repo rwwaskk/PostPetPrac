@@ -19,7 +19,9 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-
-    <%= f.submit "Submit",class:"test" %>
+  
+  <%=f.label :photo%>
+  <%= f.file_field :photo%>
+ <%= f.submit "Submit",class:"test" %>
   
 <% end %>

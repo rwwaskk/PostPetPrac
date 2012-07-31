@@ -16,6 +16,7 @@ gem 'activerecord-postgresql-adapter'
 gem 'thin'
 gem 'devise'
 gem 'bootstrap-sass','2.0.0'
+gem 'paperclip'
 
 
 end
@@ -27,6 +28,7 @@ gem 'activerecord-postgresql-adapter'
 gem 'thin'
 gem 'devise'
 gem 'bootstrap-sass','2.0.0'
+gem 'paperclip'
 end
 
 

@@ -17,6 +17,18 @@ def show
 @user = User.find(params[:id])
 @microposts = @user.microposts
 end
+
+def update
+@user=User.find_by_id(params[:id])
+@user.update_attributes(params[:user])
+if @user.save!
+flash[:success]="changes saved!"
+end
+redirect_to user_path(@user)
+end
+
+
+
 def following
     @title = "Following"
     @user = User.find(params[:id])

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+has_attached_file :photo
 
 validates_presence_of :name
 has_many :microposts
@@ -18,7 +18,7 @@ validates_uniqueness_of :name, :email, :case_sensitive => false
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name,:email, :password, :password_confirmation, :remember_me
+  attr_accessible :name,:email, :password, :password_confirmation, :remember_me,:photo
   # attr_accessible :title, :body
   def getName
   return self.name
