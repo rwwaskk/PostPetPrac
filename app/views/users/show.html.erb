@@ -1,25 +1,20 @@
 <p id="notice"><%= notice %></p>
+
+
+<ul class="nav">
+<p id="name"><%= @user.name %></p>
+<% if user_signed_in? %>
+<%= link_to 'edit account Info |', edit_user_path(@user) ,class:"edit_account_info"%>
+<%= link_to '|  update your status', new_micropost_path,class:"update" %> 
+<%end%>
+</ul>
+
 <div id="sign_in">
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-</div>
-
- <div id="sign_in">
- 
-
- 
  <% if !@user.microposts.any? %>
- <h3>This user does not have any post yet </h3>
+ <h2>This user does not have any post yet </h2>
  <%end%>
     <% if @user.microposts.any? %>
-      <h3>posts (<%= @user.microposts.count %>)</h3>
+      <h2>posts (<%= @user.microposts.count %>)</h2>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
@@ -28,13 +23,8 @@
   <br/>
 
 <div id="stats">
-<%= link_to 'Edit', edit_user_path(@user) ,class:"down"%> |
-<%= link_to 'Back', users_path,class:"down" %>
-<%= link_to 'update  your status', new_micropost_path,class:"down" %>
 
-
+<%= link_to 'Back', users_path,class:"back" %>
 <%= render 'shared/stats' %>
-
-
 </div>  
   
