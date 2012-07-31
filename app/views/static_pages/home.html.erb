@@ -9,6 +9,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
+  <body>
 <% if user_signed_in? %> 
   <div class="unsigned_center">
   <h1 >Welcome Back!</h1>
@@ -16,15 +17,23 @@
   <% @user ||= current_user %>
    <%= button_to "go to your page", user_path(@user), class: "test" ,:method=>:get%>
 </div>
-<div class="feed">
+
 <h2> From people you have followed:</h2>
    <%=render @feed_items%>
  </div>  
 
 <%end%>
-<% if !user_signed_in? %> 
-<div class="unsigned_center">
 
+<% if !user_signed_in? %> 
+<div id="container">
+ <div id="header" >
+<div id="mainnav"><%=render 'layouts/navigation'%></div>
+
+   <%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
+</div>
+
+
+<div id = "feeds">
   
     <div class="fadein">  
     <img src="https://lh6.googleusercontent.com/-wUe2TDicTkc/UBNdi8LzzgI/AAAAAAAAAXc/gBvBKjBRHjk/s552/1.jpeg">
@@ -36,7 +45,15 @@
     <img src="https://lh3.googleusercontent.com/-O0i6xmu1Fl0/UBNdj3I45mI/AAAAAAAAAYE/om_l1nYsLOs/s552/7.jpeg">
     
     </div>   
+    </div>   
+  <div id="links">
+ <h2 id ="act">Activitis</h2>
   </div>
+  
 <%end%>
-
+<div id="footer">
+<%= render 'layouts/down'%>
+</div>
+</div>
+</body>
 </html>
