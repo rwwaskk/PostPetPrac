@@ -9,8 +9,20 @@ class MicropostsController < ApplicationController
       	end
    end
    
-  
-	
+   
+   def edit
+@micropost=Micropost.find_by_id(params[:id])
+ 
+   end
+  def update
+  @user=current_user
+@micropost=Micropost.find_by_id(params[:id])
+@micropost.update_attributes(params[:micropost])
+if @micropost.save!
+flash[:success]="changes saved!"
+end
+redirect_to user_path(@user)
+end
 	def new
  		@micropost = current_user.microposts.build(params[:micropost])
 

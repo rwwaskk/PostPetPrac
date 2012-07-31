@@ -6,7 +6,7 @@
   </span>
   <%=link_to 'comment', micropost_path(micropost)%>
   <% if current_user==micropost.user %> 
-  
+  <%=link_to "Edit",edit_micropost_path(micropost)%>
   <%=link_to "Delete",micropost_path(micropost),:method => :delete%>
  
  <%end%>
