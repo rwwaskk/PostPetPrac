@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-   
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -9,20 +8,33 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
+
+<body>
+<%#=****************************** For SIGNED IN User %>
 <% if user_signed_in? %> 
-  <div class="unsigned_center">
-  <h1 >Welcome Back!</h1>
-  <h2> you are signed in</h2>
-  <% @user ||= current_user %>
-   <%= button_to "go to your page", user_path(@user), class: "test" ,:method=>:get%>
+<div id="container">
+ <div id="header" >
+<div id="mainnav"><%=render 'layouts/navigation'%></div>
+
+   <%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
 </div>
 
+  <div id="feeds">
+  <% @user ||= current_user %>
+   
 <h2> From people you have followed:</h2>
    <%=render @feed_items%>
- </div>  
+    <%= button_to "go to your page", user_path(@user), class: "test" ,:method=>:get%>
+ </div> 
+ <div id="links">
+ <h2 id ="act">Activitis</h2>
+  </div> 
 
 <%end%>
+
+
+
+<%#=*************************************For UNSIGNED USER%>
 
 <% if !user_signed_in? %> 
 <div id="container">
@@ -51,6 +63,9 @@
   </div>
   
 <%end%>
+
+
+<%#=********************************************FOOTER%>
 <div id="footer">
 <%= render 'layouts/down'%>
 </div>

@@ -1,12 +1,6 @@
 <% @user ||= current_user %>
-<div class="stats">
 
 
- <% if !(@user.photo.url=="/photos/original/missing.png")%>
- 
- <%= image_tag @user.photo.url(:small)%>
- <%end%>
- 
  <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
     <%= @user.followed_users.count %>
@@ -38,4 +32,4 @@
   <%= f.submit "Unfollow", class: "test" %>
 <% end %>
 <% end %>
-</div>
+

@@ -1,30 +1,46 @@
 <p id="notice"><%= notice %></p>
 
+<div id="container">
 
-<ul class="nav">
-<p id="name"><%= @user.name %></p>
-<% if user_signed_in? %>
-<%= link_to 'edit account Info |', edit_user_path(@user) ,class:"edit_account_info"%>
-<%= link_to '|  update your status', new_micropost_path,class:"update" %> 
-<%end%>
-</ul>
+	<div id="header" >
+		<div id="mainnav"><%=render 'layouts/navigation'%></div>
+		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
+	</div>
 
-<div id="sign_in">
- <% if !@user.microposts.any? %>
- <h2>This user does not have any post yet </h2>
- <%end%>
-    <% if @user.microposts.any? %>
-      <h2>posts (<%= @user.microposts.count %>)</h2>
-      <ol class="microposts">
+	<div id="horizontal_nav">
+		<% if user_signed_in? %>
+		<%= link_to 'edit account Info |', edit_user_path(@user) %>
+		<%= link_to '|  update your status', new_micropost_path %> 
+		<%end%>
+	</div>
+
+
+	<div id="feeds">
+
+		<% if !@user.microposts.any? %>
+		 <h2>This user does not have any post yet </h2>
+		 <%end%>
+   		  <% if @user.microposts.any? %>
+     	 <h2>posts (<%= @user.microposts.count %>)</h2>
+     	 <ol class="microposts">
         <%= render @microposts %>
-      </ol>
-     <% end %>
-  </div>
-  <br/>
+      	</ol>
+     	<% end %>
+	</div>
 
-<div id="stats">
+	<div id="links">
+	
+	<% if !(@user.photo.url=="/photos/original/missing.png")%>
+	<%= image_tag @user.photo.url(:small)%>
+	<%end%>
+	<p id="name"><%= @user.name %></p>
+	<%= render 'shared/stats' %>
+	<%= link_to 'Back', users_path,class:"back" %>
+	
+	</div>  
 
-<%= link_to 'Back', users_path,class:"back" %>
-<%= render 'shared/stats' %>
-</div>  
-  
+	<div id="footer">
+		<%= render 'layouts/down'%>
+	</div>
+
+</div>
