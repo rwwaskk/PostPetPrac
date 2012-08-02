@@ -1,31 +1,58 @@
-<%= javascript_include_tag "rails" %>
+<% @user ||= current_user %>
+
+<div id="container">
+<div id="header" >
+		<div id="mainnav"><%=render 'layouts/navigation'%></div>
+		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
+	</div>
+	
+		<div id="horizontal_nav">
+		<% if user_signed_in? %>
+		
+		 <%= link_to 'Back|', user_path(@user) %>
+		<%=link_to "|Edit|",edit_micropost_path(@micropost)%>
+		<%= link_to '|Delete',edit_micropost_path(@micropost)%>
+		<%end%>
+	</div>
+
+
+<div id="post_center">
 <%=@micropost.content%>
-<%=link_to @micropost.user.name,user_path(@micropost.user)%>
+
  <span class="timestamp">
-    Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
+    ---posted by 
+    
+    <%= time_ago_in_words(@micropost.created_at) %> ago by
+    <%=link_to @micropost.user.name,user_path(@micropost.user)%>
 </span>
-
-
- 
  <% if !(@micropost.photo.url=="/photos/original/missing.png")%>
- <h2>your post has a photo!</h2>
+ <p>your post has a photo!</p>
  <%= image_tag @micropost.photo.url%>
  <%end%>
+</div>
 
 
 
 
+<div id="comment">
 
  <% if @micropost.microcomments.any? %>
       <h3>comments (<%= @micropost.microcomments.count %>)</h3>
+
   <%= render @micropost.microcomments%>
+  
  <% end %>
 
+</div>
+
+<div id="comment_form">
 <%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment do |f| %>
  <div class="field">
-   <%= f.text_area :content, placeholder: "enter new comment" %>
+   <%= f.text_area :content, placeholder: "enter new comment",:rows=>6 %>
  </div>
 <%= f.submit "comment", class: "test" %>
 <% end %>
+</div>
 
- <%= link_to 'Back', users_path ,class:'down'%>
+ 
+</div>

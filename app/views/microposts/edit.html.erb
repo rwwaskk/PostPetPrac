@@ -1,10 +1,28 @@
 <% @user ||= current_user %>
+<div id="container">
 
+<div id="header" >
+		<div id="mainnav"><%=render 'layouts/navigation'%></div>
+		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
+	</div>
+	
+		<div id="horizontal_nav">
+		<% if user_signed_in? %>
+		
+		 <%= link_to 'Back', user_path(@user) ,class:'down'%>
+		
+		<%end%>
+	</div>
+<div id="post_form_container">
+<div id="post_form">
 <%= form_for @micropost do |f| %>
- 
-  <div class="field">
-  
-    <%= f.text_area :content, placeholder: "enter new status" %>
+ <div class="field">
+     <%= f.text_area :content, placeholder: "enter new status",:rows=>15 %>
+     <%=f.label :photo%>
+    <%= f.file_field :photo%>
   </div>
   <%= f.submit "Post", class: "test" %>
 <% end %>
+</div>
+</div>
+</div>

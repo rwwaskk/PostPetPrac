@@ -1,7 +1,15 @@
-<li>
+<ul>
   <span class="content"><%= microcomment.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(microcomment.created_at)  unless microcomment.created_at.nil?%> ago.
+<%unless microcomment.created_at.nil? %>
+---posted
+<%end%> 
+     <%= time_ago_in_words(microcomment.created_at)  unless microcomment.created_at.nil?%> 
+     
+   <%unless microcomment.created_at.nil? %>
+ago by
+<%end%>  
+     
   </span>
   <%=link_to microcomment.user.name,user_path(microcomment.user) unless microcomment.user.nil? %> 
   <% if !microcomment.user.nil?%> 
@@ -12,5 +20,5 @@
  <%end%>
  <%end%>
 
- </li>
- 
+
+ </ul>
