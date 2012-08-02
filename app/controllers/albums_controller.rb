@@ -22,9 +22,9 @@ def create
     	@user=current_user
     	if @album.save
       	flash[:success] = "album created!"
-      	redirect_to user_path(@user)
+      redirect_to album_path(@album)
     else
-      render 'static_pages/home'
+      redirect_to album_path(@album)
     end
 
 end

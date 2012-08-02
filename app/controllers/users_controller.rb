@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+
+
+
+
 def new
 @user = User.new
-5.times {@user.albums.build}
+@user.albums.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }

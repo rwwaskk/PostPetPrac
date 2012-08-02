@@ -44,19 +44,45 @@ text-align: center;
 float:right;
 
 }
-
 /**********************end of unsigned main page******************************/
+/**********************show micropost page******************************/
+div#post_center{
+float:center;
 
+background:#9FC;
+text-align:center;
 
+}
+div#comment{
+float:center;
 
+background:#6F9;
+text-align:center;
 
+}
 
+div#comment_form{
+float:center;
 
+background:#6F9;
+text-align:center;
 
+}
+/**********************end of micropost page******************************/
+/**********************new/edit of micropost page******************************/
+div#post_form_container{
+float:center;
+background:#9FC;
+text-align:center;
+}
+div#post_form{
+float:center;
+width:1300px;
+margin:10px;
 
-
-
-
+text-align:center;
+}
+/**********************end of new/edit of micropost page******************************/
 h1{
 
 font:30px Papyrus;
