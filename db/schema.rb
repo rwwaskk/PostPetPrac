@@ -11,15 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731065648) do
+ActiveRecord::Schema.define(:version => 20120801093545) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "albums", ["user_id", "created_at"], :name => "index_albums_on_user_id_and_created_at"
 
   create_table "microcomments", :force => true do |t|
     t.string   "content"
     t.integer  "micropost_id"
+    t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "user_id"
   end
+
+  add_index "microcomments", ["user_id", "created_at"], :name => "index_microcomments_on_user_id_and_created_at"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -30,6 +41,20 @@ ActiveRecord::Schema.define(:version => 20120731065648) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "photos", :force => true do |t|
+    t.string   "description"
+    t.integer  "album_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_uploaded_at"
+  end
+
+  add_index "photos", ["album_id", "created_at"], :name => "index_photos_on_album_id_and_created_at"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -56,14 +81,7 @@ ActiveRecord::Schema.define(:version => 20120731065648) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.string   "photo"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

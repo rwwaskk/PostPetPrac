@@ -1,4 +1,16 @@
 PostPet::Application.routes.draw do
+  resources :albums
+
+  resources :photos
+
+  get "album/new"
+
+  get "album/create"
+
+  get "album/update"
+
+  get "album/delete"
+
   devise_for :users
   authenticated :user do 
   root :to => 'static_pages#home'
@@ -15,7 +27,10 @@ PostPet::Application.routes.draw do
   
    match '/signup' => 'users#new'
    match '/' => 'static_pages#home'
-  
+   
+   resources :albums do 
+     resources :photos
+    end
    resources :microposts
    post 'microposts/:id'=>'microposts#add_comment'
   

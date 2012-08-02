@@ -1,0 +1,19 @@
+<h1>Editing album</h1>
+
+<%= form_for(@album, :html => { :multipart => true }) do |f| %>
+<%= f.fields_for :photos do |photo|%>
+<%=photo.file_field :image%>
+<%end%>
+
+
+<%=f.label :photo%>
+<%= f.file_field :photo%>
+
+<%= f.submit %>
+<%end%>
+
+
+
+
+<%= link_to 'Show', @album %> |
+<%= link_to 'Back', albums_path %>

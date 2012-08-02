@@ -7,8 +7,12 @@ has_attached_file :photo,
     :large =>   "400x400>" }
 
 validates_presence_of :name
-has_many :microposts
-has_many :microcomments
+has_many :microposts,:dependent=>:destroy
+has_many :microcomments,:dependent=>:destroy
+has_many :albums,:dependent=>:destroy
+accepts_nested_attributes_for :albums, :allow_destroy => true
+
+
 has_many :relationships, :foreign_key => 'follower_id',:dependent => :destroy
 has_many :followed_users, :through => :relationships, :source=> :followed
 has_many :reverse_relationships, :foreign_key=> "followed_id",

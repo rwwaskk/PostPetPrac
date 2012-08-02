@@ -11,6 +11,7 @@
 		<% if user_signed_in? %>
 		<%= link_to 'edit account Info |', edit_user_path(@user) %>
 		<%= link_to '|  update your status', new_micropost_path %> 
+		<%= link_to '|  create an album', new_album_path %> 
 		<%end%>
 	</div>
 
@@ -22,10 +23,32 @@
 		 <%end%>
    		  <% if @user.microposts.any? %>
      	 <h2>posts (<%= @user.microposts.count %>)</h2>
+     	  <%= @microposts.nil?%>
      	 <ol class="microposts">
         <%= render @microposts %>
       	</ol>
      	<% end %>
+     	
+     	
+     	
+     	<% if !@user.albums.any? %>
+		 <h2>This user does not have any post yet </h2>
+		 <%end%>
+   		  <% if @user.albums.any? %>
+     	 <h2>albums (<%= @user.albums.count %>)</h2>
+     	 
+     	 <ol class="microposts">
+        <%= render @user.albums %>
+      	</ol>
+     	<% end %>
+     	
+     	
+     	
+      
+      	
+     	
+     	
+     	
 	</div>
 
 	<div id="links">
@@ -42,5 +65,8 @@
 	<div id="footer">
 		<%= render 'layouts/down'%>
 	</div>
+	
+	
+	
 
 </div>

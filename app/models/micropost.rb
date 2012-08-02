@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-has_attached_file :photo
+  has_attached_file :photo
   attr_accessible :content, :user_id,:photo
   has_many :microcomments
   belongs_to :user

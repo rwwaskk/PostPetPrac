@@ -1,0 +1,11 @@
+<%= form_for @album do |f| %>
+ 
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <%= f.fields_for :photos do |builder| %>
+    <%= render "photo_fields", :f => builder %>
+  <% end %>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
