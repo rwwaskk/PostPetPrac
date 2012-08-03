@@ -10,5 +10,6 @@ class Photo < ActiveRecord::Base
   :large=>'600x600>'
   }
   belongs_to :album
+  has_many :microcomments
   
 end

@@ -21,8 +21,10 @@ end
 def show
 
 @album=Album.find_by_id(params[:album_id])
+
 id = params[:id].to_i
 @photo=Photo.find_by_id(params[:id])
+@microcomment = @photo.microcomments.build(params[:microcomment])
 @album=Album.find_by_id(@photo.album_id)
 @first=false
 @last=false
@@ -54,4 +56,18 @@ end
 def index
 @photos=Photo.all
 end
+
+ def add_comment
+  	@photo=Photo.find_by_id(params[:id])
+    @microcomment = @photo.microcomments.build(params[:microcomment]) do |c|
+     c.user=current_user
+     end
+  if @microcomment.save!
+  		flash[:success] = "comments created!"
+        redirect_to photo_path(@photo)
+    else
+  render 'static_pages/home'
+  end
+end
+
 end

@@ -39,11 +39,26 @@
 <br/>
  <%= @photo.description %>
 
-
-
-
-
-
 </div>
 </div>
+
+
+
+<div id="comment">
+
+ <% if @photo.microcomments.any? %>
+      <h3>comments (<%= @photo.microcomments.count %>)</h3>
+
+  <%= render @photo.microcomments%>
+  
+ <% end %>
+
+</div>
+<div id="comment_form">
+<%= form_for @microcomment, :url=>photo_path(@photo),:action=>:add_comment do |f| %>
+ <%=f.text_area :content, placeholder: "enter new comment",:rows=>5 ,:cols=>30%>
+ <%=f.submit "comment", class: "test" %>
+ </div>
+<% end %>
+
 </div>

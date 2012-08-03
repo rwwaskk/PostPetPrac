@@ -4,6 +4,7 @@ class CreateMicrocomments < ActiveRecord::Migration
       t.string :content
       t.integer :micropost_id
       t.integer :user_id
+      t.integer :photo_id
 
       t.timestamps
     end

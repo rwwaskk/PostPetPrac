@@ -30,7 +30,9 @@ PostPet::Application.routes.draw do
    
    resources :albums do 
      resources :photos
+   
     end
+    post 'photos/:id'=>'photos#add_comment'
    resources :microposts
    post 'microposts/:id'=>'microposts#add_comment'
   
