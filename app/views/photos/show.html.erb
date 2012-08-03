@@ -1,15 +1,49 @@
 <p id="notice"><%= notice %></p>
+<div id="container">
 
-<p>
-  <b>description:</b>
-  <%= @photo.description %>
-</p>
 
-<p>
-  <b>Album:</b>
+
+<div id="header" >
+		<div id="mainnav"><%=render 'layouts/navigation'%></div>
+		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
+	</div>
+
+	<div id="horizontal_nav">
+		<% if user_signed_in? %>
+		
+		<%= link_to 'Edit', edit_photo_path(@photo) %> |
+		
+        <%= link_to 'Back', album_path(@album) %>
+		<%end%>
+	</div>
+
+
+<div id="photo_frame">
+
+  <b>Album ID:</b>
   <%= @photo.album_id %>
-</p>
+  <b>Number Of Photos</b>
+  <%=@album.photos.count%>
+  
+  <br/>
+
+<div id="photo_center">
+<%unless @first%>
+<%=link_to 'previous', photo_path(@pre)%>
+<%end%>
+
+ <%=link_to image_tag(@photo.image.url(:medium)),photo_path(@next) unless @last%>
+<%if @last%>
+<%=image_tag @photo.image.url(:medium)%>
+<%end%>
+<br/>
+ <%= @photo.description %>
 
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+
+
+
+
+</div>
+</div>
+</div>

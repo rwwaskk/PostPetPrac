@@ -1,8 +1,10 @@
 
-
+<%@user=current_user%>
 <% @albums.each do |album| %>
   <tr>
     <td><%= album.name %></td>
   
   </tr>
   <%end%>
+  
+  <%= link_to 'Back', user_path(@user) %>

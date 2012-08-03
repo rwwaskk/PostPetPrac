@@ -1,4 +1,4 @@
-
+<ul>
   <span class="content"><%= album.name %></span>
   <span class="timestamp">
    Created by <%=link_to album.user.name,user_path(album.user) unless album.user.nil? %> 
@@ -8,3 +8,4 @@
   <% if current_user==album.user %> 
   
   <%end%>
+</ul>

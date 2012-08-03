@@ -83,6 +83,43 @@ margin:10px;
 text-align:center;
 }
 /**********************end of new/edit of micropost page******************************/
+/**********************show album page******************************/
+div#album_container{
+float:center;
+width:1100px;
+height:500px;
+background:#9FC;
+text-align:center;
+}
+div#thumbs{
+float:left;
+width:250px;
+background:#9FC;
+text-align:center;
+}
+/**********************end of show album page******************************/
+
+/**********************show photo page******************************/
+
+div#photo_frame{
+float:center;
+width:1100px;
+height:500px;
+background:#9FC;
+text-align:center;
+
+}
+div#photo_center{
+float:center;
+background:#9FC;
+text-align:center;
+padding:100px;
+
+}
+/**********************end of show photo page******************************/
+
+
+
 h1{
 
 font:30px Papyrus;

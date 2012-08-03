@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
 def show
 @album=Album.find_by_id(params[:id])
+@user=current_user
 
 end
 
@@ -32,11 +33,13 @@ end
 def update
 
 @album=Album.find_by_id(params[:id])
-@album.photos.build(params[:album])
+@album.update_attributes(params[:album])
 if @album.save!
-flash[:success]="changes saved!"
-end
-redirect_to album_path(@album)
+      	flash[:success] = "album updated!"
+      redirect_to album_path(@album)
+    else
+      redirect_to album_path(@album)
+    end
 end
 
 
