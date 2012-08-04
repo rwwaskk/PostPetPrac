@@ -14,19 +14,19 @@ PostPet::Application.routes.draw do
   devise_for :users
   authenticated :user do 
   root :to => 'static_pages#home'
+  devise_scope :user do
+  match 'users/sign_out' =>'devise/sessions#destroy'
+  end
   end
   get "static_pages/home"
-
   get "static_pages/help"
-   get "static_pages/about"
-    get "static_pages/contact"
-    get "static_pages/terms"
-    get "static_pages/ads"
- 
+  get "static_pages/about"
+  get "static_pages/contact"
+  get "static_pages/terms"
+  get "static_pages/ads"
   get "users/new"
-  
-   match '/signup' => 'users#new'
-   match '/' => 'static_pages#home'
+  match '/signup' => 'users#new'
+  match '/' => 'static_pages#home'
    
    resources :albums do 
      resources :photos

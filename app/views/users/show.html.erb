@@ -9,6 +9,7 @@
 
 	<div id="horizontal_nav">
 		<% if user_signed_in? %>
+		
 		<%= link_to 'edit account Info |', edit_user_path(@user) %>
 		<%= link_to '|  update your status', new_micropost_path %> 
 		<%= link_to '|  create an album', new_album_path %> 
