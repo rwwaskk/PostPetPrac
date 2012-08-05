@@ -3,9 +3,8 @@
   <span class="timestamp">
    Created by <%=link_to album.user.name,user_path(album.user) unless album.user.nil? %> 
     <%= time_ago_in_words(album.created_at) %> ago.
+    
   </span>
   <%=link_to 'Show', album_path(album)%>
-  <% if current_user==album.user %> 
-    <%=link_to 'delete',album_path(album)+'/delete'%>
-  <%end%>
+ 
 </ul>

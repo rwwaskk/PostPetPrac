@@ -12,7 +12,12 @@
 		 <%= link_to 'Back|', user_path(@user) %>
 		 <% if @micropost.user==@user%>
 		<%=link_to "|Edit|",edit_micropost_path(@micropost)%>
-		<%= link_to '|Delete',edit_micropost_path(@micropost)%>
+		 <% if current_user==@micropost.user %> 
+  <%=link_to 'delete',micropost_path(@micropost)+'/delete'%>
+
+ 
+ 
+ <%end%>
 		<%end%>
 		<%end%>
 	</div>

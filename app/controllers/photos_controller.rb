@@ -1,7 +1,5 @@
 class PhotosController < ApplicationController
-
-
- def destroy
+def destroy
    @user=current_user
    @photo=Photo.find_by_id(params[:id])
    @album=@photo.album
@@ -10,7 +8,6 @@ class PhotosController < ApplicationController
       	redirect_to album_path(@album)
       	end
    end
-
 def new
 @photo = Photo.new
 end
@@ -27,8 +24,6 @@ if @photo.save!
       redirect_to photo_path(@photo)
     end
 end
-
-
 def show
 
 @album=Album.find_by_id(params[:album_id])
@@ -55,20 +50,15 @@ next_id=id+1
 
 
 end
-
-
 def create
     
 	@photo = @album.photos.build(params[:album])
     @photo.save!
 end
-
-
 def index
 @photos=Photo.all
 end
-
- def add_comment
+def add_comment
   	@photo=Photo.find_by_id(params[:id])
     @microcomment = @photo.microcomments.build(params[:microcomment]) do |c|
      c.user=current_user
@@ -80,5 +70,4 @@ end
   render 'static_pages/home'
   end
 end
-
 end

@@ -40,6 +40,7 @@ PostPet::Application.routes.draw do
    post 'microposts/:id'=>'microposts#add_comment'
    match 'microposts/:id/delete'=>'microposts#destroy'
    resources :microcomments
+    match 'microcomments/:id/delete'=>'microcomments#destroy'
     resources :users do
     member do
      get :following, :followers

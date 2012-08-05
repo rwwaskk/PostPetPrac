@@ -15,7 +15,9 @@ ago by
   <% if !microcomment.user.nil?%> 
    <% if current_user==microcomment.user %> 
   
-  <%=link_to "Delete",microcomment_path(microcomment),:method => :delete%>
+  
+    <%=link_to 'delete',microcomment_path(microcomment)+'/delete'%>
+  
   
  <%end%>
  <%end%>
