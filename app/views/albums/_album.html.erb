@@ -6,6 +6,6 @@
   </span>
   <%=link_to 'Show', album_path(album)%>
   <% if current_user==album.user %> 
-  
+    <%=link_to 'delete',album_path(album)+'/delete'%>
   <%end%>
 </ul>

@@ -29,13 +29,16 @@ PostPet::Application.routes.draw do
   match '/' => 'static_pages#home'
    
    resources :albums do 
+    
      resources :photos
    
     end
+     match 'albums/:id/delete'=>'albums#destroy'
+     match 'photos/:id/delete'=>'photos#destroy'
     post 'photos/:id'=>'photos#add_comment'
    resources :microposts
    post 'microposts/:id'=>'microposts#add_comment'
-  
+   match 'microposts/:id/delete'=>'microposts#destroy'
    resources :microcomments
     resources :users do
     member do

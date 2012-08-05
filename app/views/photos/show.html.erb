@@ -1,22 +1,19 @@
 <p id="notice"><%= notice %></p>
 <div id="container">
-
-
-
-<div id="header" >
+   <div id="header" >
 		<div id="mainnav"><%=render 'layouts/navigation'%></div>
 		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
 	</div>
 
 	<div id="horizontal_nav">
 		<% if user_signed_in? %>
-		
+		<%if @photo.album.user==current_user%>
 		<%= link_to 'Edit', edit_photo_path(@photo) %> |
-		
-        <%= link_to 'Back', album_path(@album) %>
+		<%= link_to 'Back', album_path(@album) %>
+        <%= link_to 'delete',photo_path(@photo)+'/delete'%>
+        <%end%>
 		<%end%>
 	</div>
-
 
 <div id="photo_frame">
 
@@ -24,7 +21,6 @@
   <%= @photo.album_id %>
   <b>Number Of Photos</b>
   <%=@album.photos.count%>
-  
   <br/>
 
 <div id="photo_center">
