@@ -3,8 +3,7 @@ class Micropost < ActiveRecord::Base
   attr_accessible :content, :user_id,:photo
   has_many :microcomments
   belongs_to :user
-  validates :user_id, :presence => true
-  validates :content, :presence=> true
+  
   def self.from_users_followed_by(user)
   followed_user_ids = "SELECT followed_id FROM relationships 
   					  WHERE follower_id = :user_id"

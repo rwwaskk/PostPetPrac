@@ -10,6 +10,8 @@ validates_presence_of :name
 has_many :microposts,:dependent=>:destroy
 has_many :microcomments,:dependent=>:destroy
 has_many :albums,:dependent=>:destroy
+has_many :incomings,:dependent=> :destroy
+has_many :outgoings, :dependent => :destroy
 accepts_nested_attributes_for :albums, :allow_destroy => true
 
 

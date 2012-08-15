@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20120803232826) do
 
   add_index "albums", ["user_id", "created_at"], :name => "index_albums_on_user_id_and_created_at"
 
+  create_table "incomings", :force => true do |t|
+    t.integer  "from_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+    t.string   "content"
+    t.integer  "user_id"
+    t.boolean  "unread"
+  end
+
   create_table "microcomments", :force => true do |t|
     t.string   "content"
     t.integer  "micropost_id"
@@ -42,6 +52,15 @@ ActiveRecord::Schema.define(:version => 20120803232826) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "outgoings", :force => true do |t|
+    t.integer  "to_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.text     "content"
+    t.string   "title"
+  end
 
   create_table "photos", :force => true do |t|
     t.string   "description"

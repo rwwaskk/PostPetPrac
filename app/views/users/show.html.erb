@@ -10,9 +10,9 @@
 	<div id="horizontal_nav">
 		<% if user_signed_in? %>
 		
-		<%= link_to 'edit account Info |', edit_user_path(@user) %>
-		<%= link_to '|  update your status', new_micropost_path %> 
-		<%= link_to '|  create an album', new_album_path %> 
+		<%= link_to 'change my info |', edit_user_path(@user) %>
+		<%= link_to '|  arf arf', new_micropost_path %> 
+		<%= link_to '|  i want to make a new album', new_album_path %> 
 		<%end%>
 	</div>
 
@@ -20,7 +20,7 @@
 	<div id="feeds">
 
 		<% if !@user.microposts.any? %>
-		 <h2>This user does not have any post yet </h2>
+		 <h2>im too lazy to say anything </h2>
 		 <%end%>
    		  <% if @user.microposts.any? %>
      	 <h2>posts (<%= @user.microposts.count %>)</h2>
@@ -33,7 +33,7 @@
      	
      	
      	<% if !@user.albums.any? %>
-		 <h2>This user does not have any albums yet </h2>
+		 <h2>im too shy to show my photos </h2>
 		 <%end%>
    		  <% if @user.albums.any? %>
      	 <h2>albums (<%= @user.albums.count %>)</h2>
@@ -51,7 +51,9 @@
 	<%end%>
 	<p id="name"><%= @user.name %></p>
 	<%= render 'shared/stats' %>
+	<%=link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>@user%>
     </div>  
+    
 
 <div id="footer">
 	<%= render 'layouts/down'%>

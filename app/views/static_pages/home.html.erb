@@ -22,9 +22,9 @@
   <div id="feeds">
   <% @user ||= current_user %>
    
-<h2> From people you have followed:</h2>
+<h2> my friends' arfs and meows:</h2>
    <%=render @feed_items%>
-    <%= button_to "go to your page", user_path(@user), class: "test" ,:method=>:get%>
+    <%= button_to "go to my home", user_path(@user), class: "test" ,:method=>:get%>
  </div> 
  <div id="links">
  <h2 id ="act">Activitis</h2>
