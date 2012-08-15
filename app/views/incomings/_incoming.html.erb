@@ -1,8 +1,9 @@
 <ul>
 <div id="inbox">
   <%= incoming.title%><br/>
+  <%=incoming.from_id%>
   unread?<%= incoming.unread%><br/>
- send by <%=link_to incoming.user.name,user_path(incoming.user) unless incoming.user.nil? %> 
+ send by <%=link_to User.find(incoming.from_id).name,user_path(incoming.user) unless incoming.user.nil? %> 
     <%= time_ago_in_words(incoming.created_at) %> ago.
     
   <%=link_to 'show', incoming_path(incoming)%>

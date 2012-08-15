@@ -53,9 +53,9 @@ def create
 	@user=current_user
     	if @outgoing.save
     	@to_user = User.find(@outgoing.to_id)
-    	@to_user.incomings.build(:title=>@outgoing.title,:content=>@outgoing.content, :from_id=>@outgoing.to_id,:unread=>true)
+    	@to_user.incomings.build(:title=>@outgoing.title,:content=>@outgoing.content, :from_id=>current_user.id,:unread=>true)
     	@to_user.save!
-      	flash[:success] = "send to "+@to_user.name+@to_user.incomings.count.to_s
+      	flash[:success] = "send to "+@to_user.name+@outgoing.to_id.to_s
       	redirect_to user_path(@user)
     else
       redirect_to user_path(@user)
