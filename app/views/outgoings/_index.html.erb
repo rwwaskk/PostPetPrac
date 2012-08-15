@@ -10,7 +10,7 @@
 
 
 <a href="index">
-inbox
+inbox(<%=@count%>)
 </a>
 <a href="outbox">
 outbox
@@ -19,7 +19,8 @@ outbox
 <a href="unread">
 unread
 </a>
-<%=render 'inbox'%>
+
+<%=render @incomings%>
 <br/>
 
 
