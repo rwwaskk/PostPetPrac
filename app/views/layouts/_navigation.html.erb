@@ -1,4 +1,4 @@
-<%=link_to "messages", 'box/index'%>
+
 <ul class="nav">
  <% if user_signed_in? %>
   <%= link_to 'let me out', destroy_user_session_path, :method=>'delete' ,class:"down"%>  
@@ -7,6 +7,7 @@
  <% end %>
  <% if user_signed_in? %>
  <%= link_to 'change my account', edit_user_registration_path,class:"down" %>
+ <%=link_to "messages", :controller=>'box',:action=>'index'%>
  <% else %>
  <%= link_to 'sign me up', new_user_registration_path,class:"down" %>
  <% end %>
