@@ -1,7 +1,8 @@
 PostPet::Application.routes.draw do
   resources :albums
-
   resources :photos
+  resources :incomings
+  resources :outgoings
 
   get "album/new"
 
@@ -18,6 +19,10 @@ PostPet::Application.routes.draw do
   match 'users/sign_out' =>'devise/sessions#destroy'
   end
   end
+  get "box/index"
+  get "box/inbox"
+  get "box/outbox"
+  get "box/unread"
   get "static_pages/home"
   get "static_pages/help"
   get "static_pages/about"
@@ -35,7 +40,12 @@ PostPet::Application.routes.draw do
     end
      match 'albums/:id/delete'=>'albums#destroy'
      match 'photos/:id/delete'=>'photos#destroy'
+     match 'outgoings/:id/delete'=>'outgoings#destroy'
+     match 'incomings/:id/delete'=>'incomings#destroy'
+     match 'incomings/:id/reply'=>'incomings#reply'
     post 'photos/:id'=>'photos#add_comment'
+     post 'outgoings/:id'=>'outgoings#submit_reply'
+     post 'incomings/:id'=>'outgoings#submit_reply'
    resources :microposts
    post 'microposts/:id'=>'microposts#add_comment'
    match 'microposts/:id/delete'=>'microposts#destroy'
