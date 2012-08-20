@@ -5,9 +5,19 @@
  <% else %>
  <%= link_to 'let me in', new_user_session_path,class:"down" %>  
  <% end %>
+ 
+ 
  <% if user_signed_in? %>
  <%= link_to 'change my account', edit_user_registration_path,class:"down" %>
+
+ 
+ <%if Incoming.where(:unread=>true,:user_id=>current_user.id).count==0%>
  <%=link_to "messages", :controller=>'box',:action=>'index'%>
+ <%else%>
+ <%=link_to "messages("+Incoming.where(:unread=>true,:user_id=>current_user.id).count.to_s+")", :controller=>'box',:action=>'index'%>
+
+ <%end%>
+ 
  <% else %>
  <%= link_to 'sign me up', new_user_registration_path,class:"down" %>
  <% end %>

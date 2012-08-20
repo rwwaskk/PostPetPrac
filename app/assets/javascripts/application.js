@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-
+//= require_tree 
  
 $(function(){
     $('.fadein img:gt(0)').hide();

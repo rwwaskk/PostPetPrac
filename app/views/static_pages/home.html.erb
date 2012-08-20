@@ -7,10 +7,34 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+ 
+ 
   </head>
-
+ 
+ 
+ 
 <body>
 <%#=****************************** For SIGNED IN User %>
+
+
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+<script src="pusher-realtime-chat-widget/src/js/PusherChatWidget.js"></script>
+<link href="pusher-realtime-chat-widget/src/pusher-chat.css" rel="stylesheet" type="text/css" />
+<script>
+$(function() {     
+  var pusher = new Pusher('762d91d209496e530276');
+  var chatWidget = new PusherChatWidget(pusher, {
+    chatEndPoint: 'pusher-realtime-chat-widget/src/ruby-sinatra/chat.rb'
+  });
+});
+</script> 
+
+
+
+
+
+
 <% if user_signed_in? %> 
 <div id="container">
  <div id="header" >

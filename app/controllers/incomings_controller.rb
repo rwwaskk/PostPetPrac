@@ -14,7 +14,7 @@ def destroy
    @incoming=Incoming.find_by_id(params[:id])
    if @incoming.destroy
    flash[:success] = "incoming deleted!"
-      	redirect_to user_path(@user)
+      	redirect_to :controller=>'box',:action=>'index'
       	end
 end
 

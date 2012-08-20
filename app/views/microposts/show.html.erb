@@ -13,7 +13,7 @@
 		 <% if @micropost.user==@user%>
 		<%=link_to "|Edit|",edit_micropost_path(@micropost)%>
 		 <% if current_user==@micropost.user %> 
-  <%=link_to 'delete',micropost_path(@micropost)+'/delete'%>
+
 
  
  
@@ -46,7 +46,7 @@
  <% if @micropost.microcomments.any? %>
       <h3>comments (<%= @micropost.microcomments.count %>)</h3>
 
-  <%= render @micropost.microcomments%>
+  <%= render %>
   
  <% end %>
 

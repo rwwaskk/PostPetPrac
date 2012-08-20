@@ -24,20 +24,7 @@ def update
 
 end
 
-def submit_reply
-@outgoing = current_user.outgoings.build(params[:outgoing])
-@user=current_user
-    	if @outgoing.save
-    	@to_user = User.find(@outgoing.to_id)
-    	@to_user.incomings.build(:title=>@outgoing.title,:content=>@outgoing.content, :from_id=>@outgoing.to_id)
-    	@to_user.save!
-      	flash[:success] = "outgoing created!"+@to_user.incomings.count.to_s
-      	redirect_to user_path(@user)
-    else
-     flash[:success] = "outgoing created!"+params[:outgoing].to_yaml
-     redirect_to user_path(@user)
-    end
-end
+
 def new
 	@outgoing = current_user.outgoings.build(params[:outgoing])
 	@outgoing.to_id=User.find(params[:to_id])
@@ -55,7 +42,7 @@ def create
     	@to_user = User.find(@outgoing.to_id)
     	@to_user.incomings.build(:title=>@outgoing.title,:content=>@outgoing.content, :from_id=>current_user.id,:unread=>true)
     	@to_user.save!
-      	flash[:success] = "send to "+@to_user.name+@outgoing.to_id.to_s
+      	flash[:success] = "your message is sent to "+@to_user.name
       	redirect_to user_path(@user)
     else
       redirect_to user_path(@user)
@@ -70,7 +57,7 @@ def destroy
    @outgoing=Outgoing.find_by_id(params[:id])
    if @outgoing.destroy
    flash[:success] = "outgoing deleted!"
-      	redirect_to user_path(@user)
+      		redirect_to :controller=>'box',:action=>'index'
       	end
 end
 
