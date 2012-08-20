@@ -192,10 +192,10 @@ PusherChatWidget._createHTML = function(appendTo) {
   var html =  '' +
   '<div class="pusher-chat-widget">' +
     '<div class="pusher-chat-widget-header">' +
-      '<label for="nickname">Name</label>' +
-      '<input type="text" name="nickname" />' +
-      '<label for="email" title="So we can look up your Gravatar">Email (optional)</label>' +
-      '<input type="email" name="email" />' +
+      '<label for="nickname"></label>' +
+      '<input type="hidden" name="nickname" value=<%=current_user.name%>>' +
+      '<label for="email" title="So we can look up your Gravatar"></label>' +
+      '<input type="hidden" name="email" />' +
     '</div>' +
     '<div class="pusher-chat-widget-messages">' +
       '<ul class="activity-stream">' +
