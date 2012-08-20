@@ -1,8 +1,20 @@
 PostPet::Application.routes.draw do
+ post 'chat'=>'chat#post'
+ get 'chat'=>'chat#index'
+  resources :messages
+  get  '/login' => 'sessions#new', :as => :login
+  post '/login' => 'sessions#create', :as => :login
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "chats/room"
+  get '/chatroom'=>'chats#room', :as=> :chat
   resources :albums
   resources :photos
   resources :incomings
   resources :outgoings
+  
 
   get "album/new"
 

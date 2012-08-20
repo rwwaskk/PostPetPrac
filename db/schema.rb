@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(:version => 20120803232826) do
 
   add_index "albums", ["user_id", "created_at"], :name => "index_albums_on_user_id_and_created_at"
 
+  create_table "chat_users", :force => true do |t|
+    t.string   "nickname"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "chats", :force => true do |t|
+    t.string   "owner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "channel"
+  end
+
   create_table "incomings", :force => true do |t|
     t.integer  "from_id"
     t.datetime "created_at", :null => false
@@ -30,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20120803232826) do
     t.string   "content"
     t.integer  "user_id"
     t.boolean  "unread"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "chat_id"
+    t.integer  "user_id"
   end
 
   create_table "microcomments", :force => true do |t|

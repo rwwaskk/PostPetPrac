@@ -7,6 +7,8 @@ gem 'rails', '3.2.6'
 
 
 group :development do
+gem 'jquery-rails'
+gem 'faye'
 gem 'taps'
 gem 'sqlite3'
 gem 'rvm'
@@ -17,18 +19,26 @@ gem 'thin'
 gem 'devise'
 gem 'bootstrap-sass','2.0.0'
 gem 'paperclip'
-
-
+gem 'pusher'
+gem 'sinatra'
+gem 'uuid'
+gem 'json'
 end
 
 
 group :production do
+gem 'jquery-rails'
+gem 'faye'
 gem 'pg'
 gem 'activerecord-postgresql-adapter'
 gem 'thin'
 gem 'devise'
 gem 'bootstrap-sass','2.0.0'
 gem 'paperclip'
+gem 'pusher'
+gem 'sinatra'
+gem 'uuid'
+gem 'json'
 end
 
 
