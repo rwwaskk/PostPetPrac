@@ -3,6 +3,11 @@ class ChatController < ApplicationController
 def index
 end
 
+def turnOnChat
+@chat='true'
+redirect_to user_path(current_user)
+end
+
 def post
 chat_info = params[:chat_info]
 
