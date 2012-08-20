@@ -54,7 +54,8 @@
 	<%end%>
 	<p id="name"><%= @user.name %></p>
 	<%= render 'shared/stats' %>
-	<%=link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>@user%>
+	<%=link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>@user%>or
+	<%=link_to 'instant chat!', :controller=>'chat',:action=>'index'%>
     </div>  
     
 
