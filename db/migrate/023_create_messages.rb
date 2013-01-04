@@ -1,9 +1,15 @@
 class CreateMessages < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :messages do |t|
-      t.string :content
+      t.string :subject
+      t.text :body
+      t.integer :recipient_id
+      t.integer :sender_id
       t.timestamps
     end
-     add_index :messages,[:created_at]
+  end
+
+  def self.down
+    drop_table :messages
   end
 end

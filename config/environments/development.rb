@@ -37,4 +37,11 @@ PostPet::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  require 'pusher'
+  Pusher.logger = Rails.logger
+  Pusher.app_id = 25310
+  Pusher.key = '762d91d209496e530276'
+  Pusher.secret = 'd6db75a93e063e222b74'
+
 end

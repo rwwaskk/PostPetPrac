@@ -1,20 +1,5 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet/less" type="text/css" href="lib/twitter-bootstrap/lib/bootstrap.less">
-<script src="lib/less/less-1.1.5.min.js"></script>
-<link href="lib/twitter-bootstrap/lib/bootstrap.less">
-    
-<link href="assets/stylesheets/styles.css" rel="stylesheet" />
-<link href="assets/stylesheets/pusher-chat-widget.css" rel="stylesheet" />
-<style src="assets/stylesheets/styles.css"></style>
-<style src="assets/stylesheets/pusher-chat-widget.css"></style>
-<script src="lib/less/less-1.1.5.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="http://js.pusher.com/1.11/pusher.min.js"></script>
-<script src="assets/javascripts/PusherChatWidget.js"></script>  
-
 <script>
 /**
  * Creates an instance of a PusherChatWidget, binds to a chat channel on the pusher instance and
@@ -50,9 +35,7 @@ function PusherChatWidget(pusher, options) {
   // remove any unsupported characters from the chat channel name
   // see: http://pusher.com/docs/client_api_guide/client_channels#naming-channels
   this.settings.channelName = PusherChatWidget.getValidChannelName(this.settings.channelName);
-  
   this._chatChannel = this._pusher.subscribe(this.settings.channelName);
-
   this._chatChannel.bind('chat_message', function(data) {
     self._chatMessageReceived(data);
   })
@@ -301,25 +284,6 @@ PusherChatWidget.timeToDescription = function(time) {
   return desc;
 };
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 <script>
 $(function() {     
 	var pusher = new Pusher('762d91d209496e530276')
@@ -329,19 +293,3 @@ $(function() {
 });
 </script>
 
-
-</head>
-  
-<body>
-
-  
-
-<div class="hero-unit">
-<section class="realtime-chat">
-	<div class="row">
-    	<div class="span5" id='pusher_chat_widget'></div>
-    </div>
-</section>
-</div>
-</body>
-</html>

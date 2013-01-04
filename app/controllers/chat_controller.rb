@@ -1,14 +1,13 @@
 class ChatController < ApplicationController
+def notify
+Pusher['private-'+'1'].trigger('new_message', {:from => current_user.name, :subject => 'hello'})
 
-def index
+
+#flash[:success]=Pusher['private-'+'1'].trigger('new_message', {:from => current_user.name, :subject => 'hello'}).to_yaml
+render 'chat/index'
 end
-
-def turnOnChat
-@chat='true'
-redirect_to user_path(current_user)
-end
-
 def post
+
 chat_info = params[:chat_info]
 
   channel_name = nil

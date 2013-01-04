@@ -1,0 +1,9 @@
+<aside>
+	<%#= if !(current_user.photo.url=="/photos/original/missing.png")%>
+	<%= image_tag current_user.photo.url(:large)%>
+	<br/>
+	<%= current_user.name %>
+	<br/>
+	<%= render 'shared/stats' %>
+	<%= link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>current_user%>
+</aside>

@@ -1,11 +1,5 @@
-<p id="notice"><%= notice %></p>
-<div id="container">
-   <div id="header" >
-		<div id="mainnav"><%=render 'layouts/navigation'%></div>
-		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
-	</div>
-
-	<div id="horizontal_nav">
+	
+		
 		<% if user_signed_in? %>
 		<%if @photo.album.user==current_user%>
 		<%= link_to 'Edit', edit_photo_path(@photo) %> |
@@ -13,9 +7,9 @@
         <%= link_to 'delete',photo_path(@photo)+'/delete'%>
         <%end%>
 		<%end%>
-	</div>
+	
 
-<div id="photo_frame">
+
 
   <b>Album ID:</b>
   <%= @photo.album_id %>
@@ -23,7 +17,7 @@
   <%=@album.photos.count%>
   <br/>
 
-<div id="photo_center">
+
 <%unless @first%>
 <%=link_to 'previous', photo_path(@pre)%>
 <%end%>
@@ -35,12 +29,9 @@
 <br/>
  <%= @photo.description %>
 
-</div>
-</div>
 
 
 
-<div id="comment">
 
  <% if @photo.microcomments.any? %>
       <h3>comments (<%= @photo.microcomments.count %>)</h3>
@@ -49,12 +40,11 @@
   
  <% end %>
 
-</div>
-<div id="comment_form">
+
+
 <%= form_for @microcomment, :url=>photo_path(@photo),:action=>:add_comment do |f| %>
  <%=f.text_area :content, placeholder: "enter new comment",:rows=>5 ,:cols=>30%>
  <%=f.submit "comment", class: "test" %>
- </div>
+ 
 <% end %>
 
-</div>

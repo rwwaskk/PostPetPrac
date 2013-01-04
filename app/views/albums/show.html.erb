@@ -1,37 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<div id="container">
-
-	<div id="header" >
-		<div id="mainnav"><%=render 'layouts/navigation'%></div>
-		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
-	</div>
-
-	<div id="horizontal_nav">
 		<% if user_signed_in? %>
 		<%= link_to 'Edit', edit_album_path(@album) %> |
         <%= link_to 'Back', albums_path %>
          <% if current_user==@album.user %> 
-    <%=link_to 'delete',album_path(@album)+'/delete'%>
+         <%=link_to 'delete',album_path(@album)+'/delete'%>
   <%end%>
 		<%end%>
-	</div>
+	
 
-<div  id="album_container">
+
 <b>Name:</b><%= @album.name %><br />
   
-  <% @album.photos.each do |photo| %>
-  
-  <div id="thumbs"> 
-    
-   <%=link_to image_tag(photo.image.url(:thumb)) ,photo_path(photo)%>
-   <p><%=photo.description %></p>
-    comments (<%=photo.microcomments.count%>)
-   </div>
-<% end %>
+<% @album.photos.each do |photo| %>
+  <%=link_to image_tag(photo.image.url(:thumb)) ,photo_path(photo)%>
+<p><%=photo.description %></p>
+comments (<%=photo.microcomments.count%>)
+  <% end %>
 
 		
-	</div>
-	
-</div>
- 

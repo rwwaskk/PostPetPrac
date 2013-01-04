@@ -31,6 +31,7 @@ validates_uniqueness_of :name, :email, :case_sensitive => false
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name,:email, :password, :password_confirmation, :remember_me,:photo
   # attr_accessible :title, :body
+  has_many :received_messages, :class_name => 'Message', :foreign_key => :recipient_id
   def getName
   return self.name
   end

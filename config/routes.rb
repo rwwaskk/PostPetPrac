@@ -1,6 +1,28 @@
 PostPet::Application.routes.draw do
+
+ match 'users/:id/feed'=>'users#feed'
+
+
+
+ #notify
+  post 'pusher/auth'
+  resources :messages
+  match '/chat_notify'=>'chat#notify'
+
+ #chat 
  post 'chat'=>'chat#post'
  get 'chat'=>'chat#index'
+ 
+ #notification
+ get 'notify'=>'notification#index'
+ post '/notify'=>'notification#post' 
+ get '/post' => 'notification#post'
+  
+  
+  
+  
+  
+  
   resources :messages
   get  '/login' => 'sessions#new', :as => :login
   post '/login' => 'sessions#create', :as => :login

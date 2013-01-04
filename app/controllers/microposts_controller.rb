@@ -1,11 +1,12 @@
 class MicropostsController < ApplicationController
    
    def destroy
+    @microposts=current_user.microposts
    @user=current_user
    @micropost=Micropost.find_by_id(params[:id])
    if @micropost.destroy
    flash[:success] = "post deleted!"
-      	redirect_to user_path(@user)
+      	render "users/feed"
       	end
    end
    
@@ -33,11 +34,13 @@ end
     end
 
 	def create
+	    @microposts=current_user.microposts
     	@micropost = current_user.microposts.build(params[:micropost])
     	@user=current_user
     	if @micropost.save
       	flash[:success] = "post created!"
-      	redirect_to user_path(@user)
+      	#redirect_to user_path(@user)
+      	render "users/feed"
     else
       render 'static_pages/home'
     end

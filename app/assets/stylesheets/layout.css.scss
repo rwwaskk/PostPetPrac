@@ -1,0 +1,74 @@
+header{
+margin-top:-55px;
+background-image:url("https://lh6.googleusercontent.com/-gcFSeSMNdjg/UOaQthhZMBI/AAAAAAAAAl8/OoLFc2Sjk_E/s760/Screen%2520shot%25202013-01-04%2520at%252012.19.08%2520AM.png");
+background-size:500px 120px;
+background-repeat:repeat;
+height:120px;
+
+h1{
+margin-top:-60px;
+color:olive;
+}
+
+}
+
+nav {
+width:77%;
+height:70px;
+border-radius:10px; //this produce a rounded corner
+background:rgba(216,131,74,0.5);
+border:1px solid #cccccc;
+position:absolute;
+
+ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+width:940px;
+}
+
+li {
+float:left;
+font-size:20px;
+margin-left:30px;
+}
+
+a{
+margin-right:20px;
+display:block;
+line-height:40px;
+}
+}
+
+
+
+
+
+aside
+{
+	float: right;
+	width: 240px;
+	padding: 20px 0;
+	margin: -650px 40px 0 0;
+	display: inline;
+}
+
+section{
+height:425px;
+width:60%;
+margin:100px 100px;
+text-align:center;
+   
+	}
+
+
+footer{
+    clear: both;
+    background:rgba(216,131,74,0.5);
+	text-align: center;
+	border-radius:5px; 
+	padding: 10px;
+	height: 15px;
+}
+
+
