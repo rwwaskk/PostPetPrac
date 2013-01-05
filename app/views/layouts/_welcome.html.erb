@@ -1,0 +1,10 @@
+
+<% if user_signed_in? %>
+  <%= link_to 'sign out', destroy_user_session_path, :method=>'delete' ,class:"down"%>  
+ <% else %>
+ 
+ <%= link_to 'sign in', new_user_session_path,class:"down" %>  <span>or</span>
+ <%= link_to 'sign me up', new_user_registration_path,class:"down" %>
+ <% end %>
+ 
+ 
