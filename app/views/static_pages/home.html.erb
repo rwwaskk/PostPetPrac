@@ -1,3 +1,50 @@
+<div id="slideshow">
+   <div>
+     <%= image_tag 'https://lh6.googleusercontent.com/-hFfyFkHRwpg/UOf2syvTKQI/AAAAAAAAAms/yWmbsG0W3YY/s510/22.jpg'%>
+   </div>
+   <div>
+       <%= image_tag 'https://lh3.googleusercontent.com/-9e5fkbQ1q8Y/UOf2uRtS4vI/AAAAAAAAAm0/dvRwjB4b_yM/s510/23.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh3.googleusercontent.com/-ZE6J5YNjc4Q/UOf2vswdOfI/AAAAAAAAAm8/StctBaAFImg/s510/21.jpg'%>
+   </div>
+    <div>
+       <%= image_tag 'https://lh4.googleusercontent.com/-_2ahy9efSY0/UOf2wQdXVrI/AAAAAAAAAnE/tN-jRJfay10/s323/24.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh6.googleusercontent.com/-PS-ZhGZMBAY/UOf2xa4ZBzI/AAAAAAAAAnM/8LIxJnzApPc/s437/25.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh5.googleusercontent.com/-UFzSXkEYqhU/UOf21muX4YI/AAAAAAAAAnU/dxNwxxfjJho/s510/26.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh6.googleusercontent.com/-2u5RUbnV_HA/UOf23F5y6yI/AAAAAAAAAnc/1Xe2fds5psg/s498/28.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh3.googleusercontent.com/-hZIY8TDszEE/UOf231poaQI/AAAAAAAAAnk/rgT3SA7cgQc/s510/27.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh3.googleusercontent.com/-NviCwX-BYCw/UOf27qtdmKI/AAAAAAAAAns/XF2GwOod5os/s510/29.jpg' %>
+   </div>
+    <div>
+       <%= image_tag 'https://lh3.googleusercontent.com/-VndKmEERZho/UOf28IqHJeI/AAAAAAAAAn0/Thg-J3bvADI/s510/30.jpg' %>
+   </div>
+</div>
+
+<script>
+$("#slideshow > div:gt(0)").hide();// Select all elements at an index greater than index within the matched set.
+
+setInterval(function() { 
+  $('#slideshow > div:first')//Selects the first matched element.
+    .fadeOut(2000)// Hide the matched elements by fading them to transparent.
+    .next()//Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.
+    .fadeIn(2000)// Display the matched elements by fading them to opaque.
+    .end()//End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.
+    .appendTo('#slideshow');//Insert every element in the set of matched elements to the end of the target.
+},  4000);
+</script>
+
+
 
 <!--
 <!DOCTYPE html>

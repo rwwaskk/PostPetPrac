@@ -18,7 +18,7 @@
 <%= form_for @micropost do |f| %>
  <div class="field">
      <%= f.text_area :content, placeholder: "enter new status",:rows=>15 %>
-     <%=f.label :photo%>
+     <%=f.label :photo%>	
     <%= f.file_field :photo%>
   </div>
   <%= f.submit "Post", class: "test" %>

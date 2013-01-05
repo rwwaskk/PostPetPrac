@@ -17,16 +17,24 @@
 
 
 <body>
-<%= render 'layouts/header' %>
-<%= render 'layouts/nav'%>
-<section>
-<%= yield %>
-</section>
-<%= render 'layouts/aside'%>
+<div id="super-container">
+	<%= render 'layouts/header' %>
+	<%= render 'layouts/nav'%>
+	<section>
+
+		<div id="content">
+		<%= yield %>
+		</div>
+
+		<%= render 'layouts/aside'%>
+
+		<%= render 'layouts/footer' %>
+
+	</section>
 <%#= render 'layouts/messages' %>
 <!--div id="main" role="main"-->
-<%= render 'layouts/footer' %>
 
+</div>
  <!--! end of #container -->
 </body>
 </html>

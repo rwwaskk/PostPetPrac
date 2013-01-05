@@ -2,15 +2,15 @@
 
 
  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
+   
     <%= @user.followed_users.count %>
-    </strong>
+   
     following
   </a>
   <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
+   
   <%= @user.followers.count %>
-    </strong>
+   
     followers
   </a>
  <br></br>
@@ -20,7 +20,7 @@
  <%= form_for(current_user.relationships.build(followed_id: @user.id),
              remote: true) do |f| %>
 <div><%= f.hidden_field :followed_id %></div>
-<%= f.submit "follow me", class: "test" %>
+<%= f.submit "follow" %>
 <% end %>
 
 <%end%>
@@ -29,7 +29,7 @@
 <%= form_for(current_user.relationships.find_by_followed_id(@user),
              html: { method: :delete },
              remote: true) do |f| %>
-  <%= f.submit "i don't want to follow anymore ", class: "test" %>
+  <%= f.submit "unfollow"%>
 <% end %>
 <% end %>
 
