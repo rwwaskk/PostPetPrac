@@ -2,8 +2,10 @@
 <div id="userInfo">
 
 
-	<%#= if !(current_user.photo.url=="/photos/original/missing.png")%>
+	<% if !current_user.photo.nil?%>
+	
 	<%= image_tag current_user.photo.url(:large)%>
+	<%end%>
 	<br/>
 	<%= current_user.name %>
 	<br/>
