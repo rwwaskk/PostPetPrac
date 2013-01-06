@@ -1,8 +1,7 @@
 PostPet::Application.routes.draw do
 
  match 'users/:id/feed'=>'users#feed'
-
-
+ 
 
  #notify
   post 'pusher/auth'
@@ -63,9 +62,11 @@ PostPet::Application.routes.draw do
   get "static_pages/contact"
   get "static_pages/terms"
   get "static_pages/ads"
+  get "static_pages/development"
   get "users/new"
   match '/signup' => 'users#new'
   match '/' => 'static_pages#home'
+  
    
    resources :albums do 
     

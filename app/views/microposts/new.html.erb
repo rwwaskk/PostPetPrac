@@ -1,18 +1,6 @@
-
-	
-		
-		<% if user_signed_in? %>
-		
-		 <%= link_to 'Back', user_path(current_user) ,class:'down'%>
-		
-		<%end%>
-	
-
 <%= form_for @micropost do |f| %>
-   
-     <%= f.text_area :content, placeholder: "enter new status",:rows=>15 %>
+    <%= f.text_area :content, placeholder: "enter new status",:rows=>2 %>
     <%=f.label :photo%>
     <%= f.file_field :photo%>
- 
-  <%= f.submit "Post", class: "test" %>
+    <%= f.submit %>
 <% end %>

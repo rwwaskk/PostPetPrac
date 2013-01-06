@@ -5,6 +5,26 @@
 	background: #fff;
 }
 
+#top_bar{
+
+float:right;
+
+ul {
+margin: 0;
+padding: 0;
+}
+
+li {
+list-style-type: none;
+display: inline;
+}
+
+}
+
+
+
+
+
 header{
 background-image:url("https://lh6.googleusercontent.com/-gcFSeSMNdjg/UOaQthhZMBI/AAAAAAAAAl8/OoLFc2Sjk_E/s760/Screen%2520shot%25202013-01-04%2520at%252012.19.08%2520AM.png");
 background-size:500px 120px;
@@ -54,7 +74,8 @@ aside
 float: right;
 width: 240px;
 padding: 20px 0;
-margin: 0 20px 0 0;
+margin-right:-700px;
+
 display: inline;
 #userInfo { margin: 0; }
 }	

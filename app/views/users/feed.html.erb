@@ -1,2 +1,8 @@
-<%=render 'users/new'%>
-<%=render @microposts%>
+<% if user_signed_in? %>
+<%#=render 'users/new'%>
+
+<%= render 'microposts/form'%>
+<%= render @microposts.desc%>
+<%else%>
+<%=render 'layouts/welcome'%>
+<%end%>

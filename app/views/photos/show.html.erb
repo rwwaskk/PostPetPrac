@@ -44,7 +44,7 @@
 
 <%= form_for @microcomment, :url=>photo_path(@photo),:action=>:add_comment do |f| %>
  <%=f.text_area :content, placeholder: "enter new comment",:rows=>5 ,:cols=>30%>
- <%=f.submit "comment", class: "test" %>
+ <%=f.submit  %>
  
 <% end %>
 

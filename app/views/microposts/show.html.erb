@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 		
-		<%= link_to 'Back|', user_path(@user) %>
+		<%#= link_to 'Back|', user_path(@user) %>
 		<% if @micropost.user==current_user%>
 		<%= link_to "|Edit|",edit_micropost_path(@micropost)%>
 		<%= link_to "|Delete|", @micropost,:method=>'delete'%>
@@ -27,6 +27,7 @@
 
  <% if @micropost.microcomments.any? %>
       <h3>comments (<%= @micropost.microcomments.count %>)</h3>
+      <%=render @micropost.microcomments%>
  <% end %>
 
 
@@ -34,9 +35,9 @@
 
 <%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment do |f| %>
  
-   <%= f.text_area :content, placeholder: "enter new comment",:rows=>6 %>
+   <%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
 
-<%= f.submit "comment", class: "test" %>
+<%= f.submit  %>
 <% end %>
 
 

@@ -1,0 +1,12 @@
+<div id='top_bar'>
+<ul>
+<% if user_signed_in? %>
+<%= link_to 'sign out', destroy_user_session_path, :method=>'delete' %> 
+<%=link_to "messages", :controller=>'box',:action=>'index'%>
+ <li>notifications</li>
+<%else%>
+<%= link_to 'sign in', new_user_session_path %>    
+<%end%>
+
+</ul>
+</div>

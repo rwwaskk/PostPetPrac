@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
 def feed
-@micropost = current_user.microposts.build(params[:micropost])
+@micropost = current_user.microposts.new#build(params[:micropost])
+#render 'microposts/new'
 @microposts=current_user.feed
 end
 

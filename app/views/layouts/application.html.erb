@@ -18,6 +18,7 @@
 
 <body>
 <div id="super-container">
+    <%= render 'layouts/top_bar'%>
 	<%= render 'layouts/header' %>
 	<%= render 'layouts/nav'%>
 	<section>
@@ -26,7 +27,7 @@
 		<%= yield %>
 		</div>
 
-		<%= render 'layouts/aside'%>
+		<%#= render 'layouts/aside'%>
 
 		<%= render 'layouts/footer' %>
 

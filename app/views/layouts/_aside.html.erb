@@ -2,13 +2,8 @@
 
 <div id="userInfo">
 <% if user_signed_in? %>
-<%= link_to 'sign out', destroy_user_session_path, :method=>'delete' %> <br/>   
  
- 
-
-
-	<% if !(current_user.photo.url=="/photos/original/missing.png")%>
-	
+ 	<% if !(current_user.photo.url=="/photos/original/missing.png")%>
 	<%= image_tag current_user.photo.url(:small)%>
 	<%end%>
 	<br/>
@@ -18,7 +13,6 @@
 	<%= link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>current_user%>
 </div>
 <%else%>
-<%= link_to 'sign up', new_user_registration_path %>	
-<%= link_to 'sign in', new_user_session_path,class:"down" %>  
+
 <%end%>
 </aside>
