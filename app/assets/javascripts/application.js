@@ -19,15 +19,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree 
-//= require_chat
-//= require gallery
-//= require controls
-//= require dragdrop
 
-//= require effects
+
+
+
 //= require rails
-//= require jquery.titlealert
-//= require prototype
-//= require gallery
+
+
 
 
