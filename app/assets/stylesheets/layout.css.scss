@@ -73,7 +73,11 @@ padding: 20px 0;
 margin-right:-700px;
 
 display: inline;
-#userInfo { margin: 0; }
+}
+
+#userInfo{
+float:right;
+
 }	
 
 
@@ -88,7 +92,7 @@ background: #fff;
 
 clear: left;
 float: left;
-width: 560px;
+width: 1210px;
 padding: 20px 0;
 margin: 0 0 0 30px;
 display: inline;
