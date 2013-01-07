@@ -1,6 +1,4 @@
 <% if user_signed_in? %>
-<%#=render 'users/new'%>
-
 <%= render 'microposts/form'%>
 <%= render @microposts.desc%>
 <%else%>
