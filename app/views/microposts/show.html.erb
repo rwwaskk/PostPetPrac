@@ -32,6 +32,11 @@
 
 
 
+<%#=link_to "new comment",new_microcomment_path(@microcomment,:format =>:js),:remote=> true,:id=>"new_comment_link"%>
+<%#=link_to "new comment",new_microcomment_path(@microcomment,:format => :js),:remote => true, :id=>"comment_js"%>
+
+
+
 
 <%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment do |f| %>
  

@@ -17,64 +17,28 @@
 </div>
 </aside>
 
-<!--
-<div id="container">
-	<div id="header" >
-		<div id="mainnav"><%=render 'layouts/navigation'%></div>
-		<%= link_to image_tag('https://lh4.googleusercontent.com/-YHDuoBzZcj8/UBNXSLcs06I/AAAAAAAAAXA/92EYJXTEtIU/s170/cooltext736144688.jpg'), root_path, :class => 'brand' %>
-	</div>
-
-	<div id="horizontal_nav">
--->
-	<!--<% if user_signed_in? %>
-
-		<%= link_to 'change my info |', edit_user_path(@user) %>
-		<%= link_to '|  arf arf', new_micropost_path %> 
-		<%= link_to '|  i want to make a new album', new_album_path %> 
-		<%end%>
-	
-	<div id="feeds">
-	
-	<%if @user.feed.any?%>
-	<%@microposts=@user.feed%>
-	<%= render @microposts %>
-	<%end%>
-	
-	
--->
-
-
 <%=render  'my_nav'%> 
 		<% if !@user.microposts.any? %>
-		 <h2>im too lazy to say anything </h2>
+		 <p>no posts</p>
 		 <%end%>
-   		  <% if @user.microposts.any? %>
-     	 <h2>posts (<%= @user.microposts.count %>)</h2>
-     	 
-     	
-        <%= render @microposts %>
-      	
-     	<% end %>
+   		  
+   		 <% if @user.microposts.any? %>
+     	 <p>posts (<%= @user.microposts.count %>)</p>
+     	 <%= render @microposts %>
+      	 <% end %>
      	
      	
      	
-     	<% if !@user.albums.any? %>
-		 <h2>im too shy to show my photos </h2>
+     	 <% if !@user.albums.any? %>
+		 <p>no albums</p>
 		 <%end%>
-   		  <% if @user.albums.any? %>
-     	 <h2>albums (<%= @user.albums.count %>)</h2>
-     	 
-     
-        <%= render @user.albums %>
-      
-     	<% end %>
+   		 <% if @user.albums.any? %>
+     	 <p>albums (<%= @user.albums.count %>)</p>
+     	 <%= render @user.albums %>
+         <% end %>
   
 
-	
-<!--	
-	<span>or</span>
-	
-<a href="/chat_notify"  style="padding-left:0px;" rel="popup console 350 350" id="notify">instant chat!</a> 
+<!--<a href="/chat_notify"  style="padding-left:0px;" rel="popup console 350 350" id="notify">instant chat!</a> -->
 <%=link_to 'instant chat' ,'/chat', :id=>'notify',:style=>"padding-left:0px", :rel=>"popup console 350 350"%>
     
--->
+

@@ -1,6 +1,7 @@
 <%= form_for @micropost do |f| %>
 <%= f.text_area :content, placeholder: "enter new status",:rows=>2 %>
-<%=f.label :photo%>
+<br/>
+<%=f.label 'upload a photo'%>
 <%= f.file_field :photo%>
 <%= f.submit %>
 <% end %>
