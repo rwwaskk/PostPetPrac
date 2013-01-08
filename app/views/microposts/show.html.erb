@@ -20,12 +20,7 @@
  <%= image_tag @micropost.photo.url%>
  <%end%>
 
-
-
-
-
-
- <% if @micropost.microcomments.any? %>
+<% if @micropost.microcomments.any? %>
       <h3>comments (<%= @micropost.microcomments.count %>)</h3>
       <%=render @micropost.microcomments%>
  <% end %>
@@ -37,12 +32,13 @@
 
 
 
-
-<%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment do |f| %>
- 
-   <%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
-
+<%#= link_to 'Email a friend', '#', :onclick => "$('#notify_friend_form').slideDown()" %>
+<%= link_to 'Add New Comment', '#', :onclick => "$('#new_comment_form').slideDown()" %>
+<%= render 'notify_friend' %>
+<%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment,:html=>{:style=>'display:none',:id=>'new_comment_form'} do |f| %>
+<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
 <%= f.submit  %>
+<%= link_to 'Cancel', '#', :onclick => "$('#new_comment_form').slideUp()" %>
 <% end %>
 
 

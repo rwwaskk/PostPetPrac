@@ -1,3 +1,4 @@
+
 <ul>
   <%= micropost.content %>
   
@@ -10,5 +11,7 @@
     comments (<%=micropost.microcomments.count%>)
   
   <%=link_to 'show', micropost_path(micropost)%>
+  <%#=link_to 'show', micropost_path(micropost,:format=>:js),:remote=>true,
+:id =>'show_micropost_link'%>
   
 </ul>

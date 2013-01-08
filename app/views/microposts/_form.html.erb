@@ -1,7 +1,8 @@
-<%= form_for @micropost do |f| %>
+<%= form_for @micropost,:html=>{:style=>"display:none",:id=>'new_post_form'} do |f| %>
 <%= f.text_area :content, placeholder: "enter new status",:rows=>2 %>
 <br/>
 <%=f.label 'upload a photo'%>
 <%= f.file_field :photo%>
 <%= f.submit %>
+<%= link_to 'Cancel', '#', :onclick => "$('#new_post_form').slideUp()" %>
 <% end %>
