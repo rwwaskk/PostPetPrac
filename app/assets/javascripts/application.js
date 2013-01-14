@@ -23,8 +23,4 @@
 
 
 
-//= require rails
-
-
-
 

@@ -2,8 +2,14 @@ class UsersController < ApplicationController
 
 	def feed
 	    @micropost = current_user.microposts.build(params[:micropost])
+	    
 		#@micropost = current_user.microposts.new#build(params[:micropost])
 		@microposts=current_user.feed
+		
+		@microcomment = @micropost.microcomments.build(params[:microcomment]) do |c|
+    	c.user=current_user
+    	end
+		
 	end
 
 
@@ -24,6 +30,8 @@ end
 def show
 @user = User.find(params[:id])
 @microposts = @user.microposts
+@micropost=Micropost.new
+@microcomment=Microcomment.new
 end
 
 def update

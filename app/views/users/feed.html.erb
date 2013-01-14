@@ -1,6 +1,17 @@
+<!-- for signed in users-->
 <% if user_signed_in? %>
-<%= render 'microposts/form'%>
-<%= render @microposts.desc%>
+	
+	<!-- Add New Status Form-->
+	<%=link_to 'Add New Status','#',:onclick => "$('#new_post_form').slideDown()"%>
+	<%= render 'microposts/form'%>
+
+    <!-- render users feed-->
+	<div id="microposts">
+	<%= render @microposts.desc%>
+	</div>
+
+
 <%else%>
-<%=render 'layouts/welcome'%>
+	<!--if not signed in, render welcome page-->
+	<%=render 'layouts/welcome'%>
 <%end%>

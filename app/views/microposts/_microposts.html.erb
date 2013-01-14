@@ -1,35 +1,5 @@
+<div id="microposts">
 <% @microposts.each do |micropost| %>
-<div id="post_content">
-<ul>
-  <tr>
-  <%= micropost.content %>
-  </tr>
-  <% if !(micropost.photo.url=="/photos/original/missing.png")%>
-  <%= image_tag micropost.photo%>
-  <%end%>
-    Posted by <%=link_to micropost.user.name,user_path(micropost.user) unless micropost.user.nil? %> 
-    <%#= time_ago_in_words(micropost.created_at) %> ago.
-     comments (<%=micropost.microcomments.count%>)
-     <%#=link_to 'show details', micropost_path(micropost),:remote => true, :id=>'show_details'%>
-     <%=link_to 'show details',:action=>'show',:remote => true, :id=>'show_details'%>
-<div id="details"
-  
-    <%if  !micropost.id.nil? %>
-   <%= micropost.content %>
-   micropost id: <%= micropost.id %>
-   <% if user_signed_in? %>
-		<% if micropost.user==current_user%>
-		
-		<%= link_to "Edit",:action=>'edit',:controller=>'microposts',:id=>micropost.id%>
-		<%= link_to 'Delete',micropost_path(micropost)+'/delete'%>
-	<%end%>
-<%end%>
+<%= render :partial=>'microposts/micropost',:locals=>{:micropost=>micropost}%>
 <%end%>
 </div>
-</div>
-
-</div>
-</ul> 
-
-</ul>  
-<%end%>

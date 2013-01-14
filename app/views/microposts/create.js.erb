@@ -1,2 +1,1 @@
-$("#lalala").html("<%= escape_javascript(render :partial => "microposts") %>");
-
+$("#microposts").html("<%= escape_javascript(render @microposts.desc) %>");

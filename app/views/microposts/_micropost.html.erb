@@ -1,31 +1,45 @@
-<div id="post_content">
-<ul>
-  <tr>
-  
-  <%= micropost.content %>
-  
-  <% if !(micropost.photo.url=="/photos/original/missing.png")%>
-  <%= image_tag micropost.photo%>
-  <%end%>
-  
-  Posted by <%=link_to micropost.user.name,user_path(micropost.user) unless micropost.user.nil? %> 
-    <%= time_ago_in_words(micropost.created_at) %> ago.
-    comments (<%=micropost.microcomments.count%>)
-  
-  <%=link_to 'show details', micropost_path(micropost),:remote => true, :id=>'show_details'%>
+<div id="micropost_content_<%= micropost.id -%>">
+	<ul>
+  		<tr>
+  		<!--content-->
+  		<%= micropost.content %>
+  		<% if !(micropost.photo.url=="/photos/original/missing.png")%>
+ 			 <%= image_tag micropost.photo%>
+ 		 <%end%>
+   		 
+   		 <!--time,user,comment count-->
+   		 Posted by <%=link_to micropost.user.name,user_path(micropost.user) unless micropost.user.nil? %> 
+    	 <%= time_ago_in_words(micropost.created_at) %> ago.
+    	 comments (<%=micropost.microcomments.count%>)
+ 		 <%=link_to 'show/hide details', micropost_path(micropost),:remote=>true,:id=>"show_micropost_#{micropost.id}",
+  		 :onclick=>"$('#micropost_details_#{micropost.id}').toggle();"%>
+		 </tr>
+	</ul>  
+</div>
 
-  </tr>
-<div id="details">
-   <%= micropost.content %>
-   <% if user_signed_in? %>
+<!--micropost options:delete,edit,comments-->
+<div id="micropost_details_<%= micropost.id -%>" class="micropost">
+   
+    <!--if is current user-->
+	<% if user_signed_in? %>
 		<% if micropost.user==current_user%>
+		    <!--edit/delete micropost-->
+			<%= link_to "Edit",:action=>'edit',:controller=>'microposts',:id=>micropost.id%>
+			<%= link_to 'Delete',micropost_path(micropost)+'/delete',:remote=>true,:id=>'destroy_post',
+			:onclick=>"$('#micropost_content_#{micropost.id}').fadeOut();
+			$('#micropost_details_#{micropost.id}').fadeOut();"%>
+		<%end%>
+	 	
+	 	<!--comments-->	
+		<div id="comment_<%=micropost.id -%>">
+			<%= render micropost.microcomments%>
+		</div>
 		
-		<%= link_to "Edit",:action=>'edit',:controller=>'microposts',:id=>micropost.id%>
-		<%= link_to 'delete',micropost_path(micropost)+'/delete',:remote=>true,:id=>'destroy_post'%>
+		<!--comments form-->	
+		<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
+		<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
+		<%= f.submit  %>
+		<% end %>
 	<%end%>
-<%end%>
 </div>
-
-</div>
-</ul>  
 

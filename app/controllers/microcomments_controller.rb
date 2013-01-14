@@ -5,19 +5,18 @@ class MicrocommentsController < ApplicationController
    @microcomment=Microcomment.find_by_id(params[:id])
    if @microcomment.destroy
    flash[:success] = "comment deleted!"
-      	redirect_to user_path(@user)
+      	  	respond_to do |format|
+     		format.html 
+      		format.json 
+      		format.js   { render :layout => false }
+   			end 
+    
+    
+    
       	end
    end
    
-
-
-
-
-
-
 def new
-
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @micropost }
@@ -25,9 +24,8 @@ def new
 end
 
 def create
-    @micropost=Micropost.find_by_id(params[:micropost])
+    @micropost=Micropost.find_by_id(params[:micropost_id])
     @microcomment = @micropost.build(params[:microcomment])
-
     if @microcomment.save
       flash[:success] = "comment created!"
       redirect_to user_path(@user)

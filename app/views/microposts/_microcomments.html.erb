@@ -1,0 +1,10 @@
+<% if micropost.microcomments.any? %>
+      		<h3>comments (<%= micropost.microcomments.count %>)</h3>
+      		<%=render micropost.microcomments%>
+ 			<% end %>
+ 			
+ 			
+<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
+<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
+<%= f.submit  %>
+<% end %>

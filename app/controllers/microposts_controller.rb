@@ -1,20 +1,18 @@
 class MicropostsController < ApplicationController
 
-	def index
-		@micropost=current_user.microposts.new
-		@microposts=current_user.microposts
-		render "users/feed"
-	end
-
-
-	def destroy
+	   def destroy
 		@microposts=current_user.microposts
 		@user=current_user
 		@micropost=Micropost.find_by_id(params[:id])
    		if @micropost.destroy
    			flash[:success] = "post deleted!"
-    	  	render "users/feed"
-    	  end
+        end
+        respond_to do |format|
+     		format.html { redirect_to users_path }
+      		format.json 
+      		format.js   { render :layout => false }
+   		end
+    
 	end
    
    
@@ -42,14 +40,22 @@ class MicropostsController < ApplicationController
 	end
 
 	def create
-		@microposts=current_user.microposts
-		@micropost = current_user.microposts.build(params[:micropost])
+		#@microposts=current_user.microposts
+		@microposts=current_user.feed
+		@micropost = current_user.microposts.new(params[:micropost])
+		@microcomment = Microcomment.new
+		
+		#@micropost = current_user.microposts.build(params[:micropost])
     	@user=current_user
     	if @micropost.save
       		flash[:success] = "post created!"
-      		@micropost=current_user.microposts.new
-      		render "users/feed"
-   	 	else
+      		#@micropost=current_user.microposts.new
+      		respond_to do |format|
+     		format.html {redirect_to 'users/feed'}
+      		format.json 
+      		format.js   
+   			end
+      	else
      	 	render 'static_pages/home'
     	end
 	end
@@ -58,6 +64,11 @@ class MicropostsController < ApplicationController
 		@user=current_user
 		@micropost=Micropost.find_by_id(params[:id])
    		@microcomment = @micropost.microcomments.build(params[:microcomment])
+   	  		respond_to do |format|
+     		format.html 
+      		format.json 
+      		format.js   { render :layout => false }
+   			end
 	end
   
 	def add_comment
@@ -68,7 +79,11 @@ class MicropostsController < ApplicationController
   	
   			if @microcomment.save!
   				flash[:success] = "comments created!"
-        		redirect_to micropost_path(@micropost)
+        		respond_to do |format|
+     			format.html {redirect_to 'users/feed'}
+      			format.json 
+      			format.js   
+   				end
    		 	else
   				render 'static_pages/home'
   			end
