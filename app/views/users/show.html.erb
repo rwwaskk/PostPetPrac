@@ -16,7 +16,7 @@
    		 <% if @user.microposts.any? %>
      	 <p>posts (<%= @user.microposts.count %>)</p>
      	 <div id="microposts">
-     	 <%= render @user.microposts %>
+     	 <%= render @user.microposts.desc %>
      	 </div>
       	 <% end %>
      	
