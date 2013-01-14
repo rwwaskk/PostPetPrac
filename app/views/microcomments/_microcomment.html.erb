@@ -1,26 +1,23 @@
-<ul>
-  <span class="content"><%= microcomment.content %></span>
-  <span class="timestamp">
-<%unless microcomment.created_at.nil? %>
----posted
-<%end%> 
-     <%= time_ago_in_words(microcomment.created_at)  unless microcomment.created_at.nil?%> 
-     
-   <%unless microcomment.created_at.nil? %>
-ago by
-<%end%>  
-     
-  </span>
-  <%=link_to microcomment.user.name,user_path(microcomment.user) unless microcomment.user.nil? %> 
-  <% if !microcomment.user.nil?%> 
-   <% if current_user==microcomment.user %> 
+<div id="comment_id_<%= microcomment.id -%>">
+	<ul>
+	    <!--microcomment content-->
+		<%= microcomment.content %>
+		<%unless microcomment.created_at.nil? %>
+			---posted
+		<%end%> 
+     	<%= time_ago_in_words(microcomment.created_at)  unless microcomment.created_at.nil?%> 
+     	<%unless microcomment.created_at.nil? %>
+			ago by
+		<%end%>  
+        
+        <!--delete comment-->
+		<%=link_to microcomment.user.name,user_path(microcomment.user) unless microcomment.user.nil? %> 
+  			<% if !microcomment.user.nil?%> 
+				<% if current_user==microcomment.user %> 
+					<%=link_to 'delete',microcomment_path(microcomment)+'/delete',:remote=>true,
+    				:onclick=>"$('#comment_id_#{microcomment.id}').fadeOut();"%>
   
-  
-    <%=link_to 'delete',microcomment_path(microcomment)+'/delete'%>
-  
-  
- <%end%>
- <%end%>
-
-
- </ul>
+ 				<%end%>
+ 		    <%end%>
+	</ul>
+</div>
