@@ -1,5 +1,37 @@
-<%#=render 'layouts/notify'%>
+<h1>COUNT:<%= render 'layouts/notification'%></h1>
+
+<!--
+<h1>Notification</h1>
+<%= form_for Notification.new do |f| %>
+    <%= f.hidden_field :recipient_id, :value => @user.id %>
+	
+	<div>
+		<label for="notification_content">Notification</label>
+		<%= f.text_area :content %>
+	</div>
+	<div>
+		<%= f.submit 'Send a message' %>
+	</div>
+<% end %>
+<h1>Message</h1>
+<%= form_for Message.new do |f| %>
+    <%= f.hidden_field :recipient_id, :value => @user.id %>
+	<div>
+		<label for="message_subject">Subject</label>
+		<%= f.text_field :subject %>
+	</div>
+	<div>
+		<label for="message_body">Message</label>
+		<%= f.text_area :body %>
+	</div>
+	<div>
+		<%= f.submit 'Send a message' %>
+	</div>
+<% end %>-->
+
 <div id="userInfo">
+
+
 	<% if !(@user.photo.url=="/photos/original/missing.png")%>
 		<%= image_tag @user.photo.url(:small)%>
 	<%else%>
@@ -36,5 +68,18 @@
 
 <!--<a href="/chat_notify"  style="padding-left:0px;" rel="popup console 350 350" id="notify">instant chat!</a> -->
 <%=link_to 'instant chat' ,'/chat', :id=>'notify',:style=>"padding-left:0px", :rel=>"popup console 350 350"%>
-    
+
+<h1>Notification</h1>
+<%= form_for Notification.new do |f| %>
+    <%= f.hidden_field :recipient_id, :value => @user.id %>
+	
+	<div>
+		<label for="notification_content">Notification</label>
+		<%= f.text_area :content %>
+	</div>
+	<div>
+		<%= f.submit 'Send a message' %>
+	</div>
+<% end %>
+
 

@@ -38,6 +38,10 @@
 		<!--comments form-->	
 		<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
 		<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
+		    <%= fields_for Notification.new do |n|%>
+			<%= n.hidden_field :recipient_id, :value => current_user.id %>
+			<%= n.hidden_field :content, :value =>@count %>
+			<%end%>
 		<%= f.submit  %>
 		<% end %>
 	<%end%>

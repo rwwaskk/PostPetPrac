@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     message.sender_id = current_user.id
     if message.save
       flash[:notice] = "you created a message"
-      redirect_to '/'
+      redirect_to user_path(current_user)
       
       # Send a Pusher notification
       

@@ -45,7 +45,7 @@ class MicropostsController < ApplicationController
 		@micropost = current_user.microposts.new(params[:micropost])
 		@microcomment = Microcomment.new
 		
-		#@micropost = current_user.microposts.build(params[:micropost])
+		
     	@user=current_user
     	if @micropost.save
       		flash[:success] = "post created!"
@@ -73,17 +73,24 @@ class MicropostsController < ApplicationController
   
 	def add_comment
   		@micropost=Micropost.find_by_id(params[:id])
+  		@notification = Notification.new(params[:notification])
     	@microcomment = @micropost.microcomments.build(params[:microcomment]) do |c|
     	c.user=current_user
     	end
   	
-  			if @microcomment.save!
+  			if @microcomment.save! && @notification.save!
+  				@notifications = current_user.received_notifications
+  				@count=@notifications.count
+  				Pusher['private-'+params[:notification][:recipient_id]].trigger('new_message', {:content => @count})
+      			
+            
   				flash[:success] = "comments created!"
         		respond_to do |format|
      			format.html {redirect_to 'users/feed'}
       			format.json 
       			format.js   
    				end
+   			
    		 	else
   				render 'static_pages/home'
   			end

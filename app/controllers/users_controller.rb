@@ -32,6 +32,8 @@ def show
 @microposts = @user.microposts
 @micropost=Micropost.new
 @microcomment=Microcomment.new
+@notifications = current_user.received_notifications
+@count=@notifications.count
 end
 
 def update

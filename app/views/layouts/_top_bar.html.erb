@@ -1,12 +1,11 @@
 <div id='top_bar'>
-<ul>
-<% if user_signed_in? %>
-<%= link_to 'sign out', destroy_user_session_path, :method=>'delete' %> 
-<%=link_to "messages", :controller=>'box',:action=>'index'%>
- <li>notifications</li>
-<%else%>
-<%= link_to 'sign in', new_user_session_path %>    
-<%end%>
-
-</ul>
+	<ul>
+		<% if user_signed_in? %>
+			<li><%= link_to 'sign out', destroy_user_session_path, :method=>'delete' %> </tr>
+			<li><%=link_to "messages", :controller=>'box',:action=>'index'%></li>
+			<li>notifications:<span id="notify"><%= render 'layouts/notification'%></span> </li>
+ 		<%else%>
+			<%= link_to 'sign in', new_user_session_path %>    
+		<%end%>
+	</ul>
 </div>
