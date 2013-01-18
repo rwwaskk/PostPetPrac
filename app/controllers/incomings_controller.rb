@@ -2,7 +2,7 @@ class IncomingsController < ApplicationController
 
 
 def show
-
+    @notifications = current_user.received_notifications
 @incoming=Incoming.find(params[:id])
 @incoming.unread=false
 @incoming.save!

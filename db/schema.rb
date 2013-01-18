@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803232826) do
+ActiveRecord::Schema.define(:version => 20130117204144) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -45,15 +45,14 @@ ActiveRecord::Schema.define(:version => 20120803232826) do
     t.boolean  "unread"
   end
 
- 
   create_table "messages", :force => true do |t|
     t.string   "subject"
-    t.text "body"
-    t.integer "recipient_id"
-    t.integer "sender_id"
+    t.text     "body"
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-   end
+  end
 
   create_table "microcomments", :force => true do |t|
     t.string   "content"
@@ -75,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20120803232826) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "notifications", :force => true do |t|
+    t.text     "content"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "micropost_id"
+  end
 
   create_table "outgoings", :force => true do |t|
     t.integer  "to_id"

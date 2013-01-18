@@ -1,5 +1,3 @@
-<h1>COUNT:<%= render 'layouts/notification'%></h1>
-
 <!--
 <h1>Notification</h1>
 <%= form_for Notification.new do |f| %>
@@ -30,8 +28,7 @@
 <% end %>-->
 
 <div id="userInfo">
-
-
+	
 	<% if !(@user.photo.url=="/photos/original/missing.png")%>
 		<%= image_tag @user.photo.url(:small)%>
 	<%else%>
@@ -40,7 +37,8 @@
 	
 	<%= @user.name %><br/>
 	<%= render 'shared/stats' %>
-	<%= link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>@user%>
+	<%#= link_to 'send a message', :controller=>'outgoings',:action=>'new',:to_id=>@user%>
+	<%= link_to 'send a message', :controller=>'messages',:action=>'new',:recipient_id=>@user%>
 </div>
 
 <%=render  'my_nav'%> 
@@ -69,6 +67,7 @@
 <!--<a href="/chat_notify"  style="padding-left:0px;" rel="popup console 350 350" id="notify">instant chat!</a> -->
 <%=link_to 'instant chat' ,'/chat', :id=>'notify',:style=>"padding-left:0px", :rel=>"popup console 350 350"%>
 
+<!--
 <h1>Notification</h1>
 <%= form_for Notification.new do |f| %>
     <%= f.hidden_field :recipient_id, :value => @user.id %>
@@ -81,5 +80,5 @@
 		<%= f.submit 'Send a message' %>
 	</div>
 <% end %>
-
+-->
 

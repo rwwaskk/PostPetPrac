@@ -1,7 +1,16 @@
-<h2>Your messages</h2>
+<h2>Incoming</h2>
 
-<% if @messages.any? %>
-<%= render :partial => @messages %>
+<% if @incoming_messages.any? %>
+<%= render :partial => @incoming_messages %>
+<% else %>
+<p>How sad, you have no messages.</p>
+<% end %>
+
+
+<h2>Outgoing</h2>
+
+<% if @outgoing_messages.any? %>
+<%= render :partial => @outgoing_messages %>
 <% else %>
 <p>How sad, you have no messages.</p>
 <% end %>

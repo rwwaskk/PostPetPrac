@@ -32,6 +32,7 @@ validates_uniqueness_of :name, :email, :case_sensitive => false
   attr_accessible :name,:email, :password, :password_confirmation, :remember_me,:photo
   # attr_accessible :title, :body
   has_many :received_messages, :class_name => 'Message', :foreign_key => :recipient_id
+  has_many :sent_messages,     :class_name=>'Message',   :foreign_key => :sender_id
   has_many :received_notifications, :class_name=>'Notification', :foreign_key=> :recipient_id
   def getName
   return self.name

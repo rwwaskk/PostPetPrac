@@ -23,6 +23,19 @@ class NotificationsController < ApplicationController
       render '/'
     end
   end
+  
+  
+  def destroy
+  	@notification=Notification.find_by_id(params[:id])
+   	if @notification.destroy
+   		flash[:success] = "post deleted!"
+    end
+    respond_to do |format|
+    	format.html { redirect_to user_path(current_user) }
+      	format.json 
+      	format.js   { render :layout => false }
+   	end
+  end
 
 
 end

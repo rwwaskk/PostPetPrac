@@ -1,8 +1,5 @@
 <% @user ||= current_user %>
-
-
- <a href="<%= following_user_path(@user) %>">
-   
+<a href="<%= following_user_path(@user) %>">
     <%= @user.followed_users.count %>
    
     following
@@ -20,6 +17,14 @@
  <%= form_for(current_user.relationships.build(followed_id: @user.id),
              remote: true) do |f| %>
 <div><%= f.hidden_field :followed_id %></div>
+
+
+			<%= fields_for Notification.new do |n|%>
+			<%= n.hidden_field :recipient_id, :value => current_user.id %>
+			<%= n.hidden_field :content, :value =>"you have a new follower!" %>
+			<%end%>
+
+
 <%= f.submit "follow" %>
 <% end %>
 

@@ -1,8 +1,20 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
   
+  
+  def show
+  @notifications = current_user.received_notifications
+  @message = Message.find_by_id(params[:id])
+  end
+  def new
+  
+  @notifications = current_user.received_notifications
+  end
+  
   def index
-    @messages = current_user.received_messages
+    @incoming_messages = current_user.received_messages
+    @outgoing_messages = current_user.sent_messages
+    @notifications = current_user.received_notifications
   end
   
   def create
@@ -10,17 +22,46 @@ class MessagesController < ApplicationController
     message.sender_id = current_user.id
     if message.save
       flash[:notice] = "you created a message"
-      redirect_to user_path(current_user)
-      
-      # Send a Pusher notification
-      
-      Pusher['private-'+params[:message][:recipient_id]].trigger('new_message', {:from => current_user.name, :subject => message.subject})
-      flash[:notice]= Pusher['private-'+params[:message][:recipient_id]].trigger('new_message', {:from => current_user.name, :subject => message.subject}).to_yaml
-      
-    else
-      @user = User.find(params[:message][:recipient_id])
-      render :action => 'users/show'
+      redirect_to messages_path
+	else
+	  redirect_to messages_path
     end
+  end
+  
+  def destroy
+	@message=Message.find_by_id(params[:id])
+   	if @message.destroy
+		flash[:success] = "message deleted!"
+    end
+        respond_to do |format|
+     		format.html { redirect_to messages_path }
+      		format.json 
+      		format.js   { render :layout => false }
+   		end
+	end
+  
+  
+  def reply
+    @notifications = current_user.received_notifications
+	@reply = Message.find(params[:id])
+	@id=params[:id]
+	@reply.subject="re:"+@reply.subject
+	render 'edit'
+  end
+  
+  
+  def edit
+  	@notifications = current_user.received_notifications
+  end
+  
+  def update
+
+		@message = Message.find(params[:id])
+		@message.update_attributes(params[:message])
+		if @message.save!
+			flash[:success]="changes saved!"
+		end
+		redirect_to messages_path
   end
   
 end

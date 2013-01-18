@@ -40,7 +40,8 @@
 		<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
 		    <%= fields_for Notification.new do |n|%>
 			<%= n.hidden_field :recipient_id, :value => current_user.id %>
-			<%= n.hidden_field :content, :value =>@count %>
+			<%= n.hidden_field :micropost_id, :value => micropost.id %>
+			<%= n.hidden_field :content, :value => current_user.name+"  has commented on your post!" %>
 			<%end%>
 		<%= f.submit  %>
 		<% end %>

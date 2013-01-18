@@ -1,98 +1,111 @@
 PostPet::Application.routes.draw do
-
- match 'users/:id/feed'=>'users#feed'
- 
-
- #notify
-  post 'pusher/auth'
-  resources :messages
-  match '/chat_notify'=>'chat#notify'
-
- #chat 
- post 'chat'=>'chat#post'
- get 'chat'=>'chat#index'
- 
- #notification
- get 'notify'=>'notification#index'
- post '/notify'=>'notification#post' 
- get '/post' => 'notification#post'
+	
+	#root page
+	root :to => 'static_pages#home'
+	
+	#feed
+	match 'users/:id/feed'=>'users#feed'
+ 	
+ 	#notify
+	post 'pusher/auth'
   
   
+    #messages 
+  	resources :messages
+  	get 'messages/:id/reply'=>'messages#reply'
+  	
+  	#notification
+  	resources :notifications
+  	
+  	#chat 
+  	match '/chat_notify'=>'chat#notify'
+	post 'chat'=>'chat#post'
+ 	get 'chat'=>'chat#index'
+ 	
+
+    #sessions
+	get  '/login' => 'sessions#new', :as => :login
+	post '/login' => 'sessions#create', :as => :login
+	get "sessions/new"
+	get "sessions/create"
+
   
   
-  
-  
-  resources :messages
-  get  '/login' => 'sessions#new', :as => :login
-  post '/login' => 'sessions#create', :as => :login
-  get "sessions/new"
-
-  get "sessions/create"
-
-  get "chats/room"
-  get '/chatroom'=>'chats#room', :as=> :chat
-  resources :albums
-  resources :photos
-  resources :incomings
-  resources :outgoings
-  
-
-  get "album/new"
-
-  get "album/create"
-
-  get "album/update"
-
-  get "album/delete"
-
-  devise_for :users
-  authenticated :user do 
-  root :to => 'static_pages#home'
-  devise_scope :user do
-  match 'users/sign_out' =>'devise/sessions#destroy'
-  end
-  end
-  get "box/index"
-  get "box/inbox"
-  get "box/outbox"
-  get "box/unread"
-  get "static_pages/home"
-  get "static_pages/help"
-  get "static_pages/about"
-  get "static_pages/contact"
-  get "static_pages/terms"
-  get "static_pages/ads"
-  get "static_pages/development"
-  get "users/new"
-  match '/signup' => 'users#new'
-  match '/' => 'static_pages#home'
-  
-   
-   resources :albums do 
-    
-     resources :photos
-   
-    end
-     match 'albums/:id/delete'=>'albums#destroy'
-     match 'photos/:id/delete'=>'photos#destroy'
-     match 'outgoings/:id/delete'=>'outgoings#destroy'
-     match 'incomings/:id/delete'=>'incomings#destroy'
-     match 'incomings/:id/reply'=>'incomings#reply'
+    #alums
+  	resources :albums do 
+       resources :photos
+	end
+	resources :photos
+  	get "album/new"
+	get "album/create"
+	get "album/update"
+	get "album/delete"
+	match 'albums/:id/delete'=>'albums#destroy'
+    match 'photos/:id/delete'=>'photos#destroy'
     post 'photos/:id'=>'photos#add_comment'
-     post 'outgoings/:id'=>'outgoings#submit_reply'
-     post 'incomings/:id'=>'outgoings#submit_reply'
-   resources :microposts
+  	
+  
+ 	
+  
+	#devise for users
+	devise_for :users
+	authenticated :user do 
+  		devise_scope :user do
+  			match 'users/sign_out' =>'devise/sessions#destroy'
+  		end
+	end
+	resources :users
+ 
+  #static pages
+	get "static_pages/home"
+  	get "static_pages/help"
+  	get "static_pages/about"
+  	get "static_pages/contact"
+  	get "static_pages/terms"
+  	get "static_pages/ads"
+  	get "static_pages/development"
+  
+  #microposts
+  	resources :microposts do
+      member do
+        post:notify_friend
+      end
+    end
+    
+   #relationships 
+   resources :relationships, :only=>[:create,:destroy]
+  
+ 
+  
+    match 'outgoings/:id/delete'=>'outgoings#destroy'
+    match 'incomings/:id/delete'=>'incomings#destroy'
+    match 'incomings/:id/reply'=>'incomings#reply'
+    post 'outgoings/:id'=>'outgoings#submit_reply'
+    post 'incomings/:id'=>'outgoings#submit_reply'
+    resources :incomings
+	resources :outgoings
+	get "box/index"
+	get "box/inbox"
+	get "box/outbox"
+	get "box/unread"
+	get "users/new"
+	match '/signup' => 'users#new'
+  
+   
+   resources :microposts do
+      member do
+        post:notify_friend
+      end
+    end
+   
    post 'microposts/:id'=>'microposts#add_comment'
    match 'microposts/:id/delete'=>'microposts#destroy'
    resources :microcomments
-    match 'microcomments/:id/delete'=>'microcomments#destroy'
-    resources :users do
-    member do
-     get :following, :followers
-    end
-   end
- 
-   resources :relationships, :only=>[:create,:destroy]
+   match 'microcomments/:id/delete'=>'microcomments#destroy'
+    
+    
+    
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -2,4 +2,7 @@
 <h3><%= message.subject %></h3>
 <p>From <%= message.sender.name %> <%= time_ago_in_words(message.created_at) %> ago</p>
 <p><%= message.body %></p>
+<%=link_to 'delete',message_path(message),:method=> :delete%>
+<%=link_to 'reply', message_path(message)+'/reply',:id=>message.id%>
+<%#=link_to 'back',:controller=>'box',:action=>'index'%>
 </div>

@@ -12,7 +12,7 @@
 
 <% if @micropost.microcomments.any? %>
       <h3>comments (<%= @micropost.microcomments.count %>)</h3>
-      <%=render @micropost.microcomments%>
+      <%#=render @micropost.microcomments%>
  <% end %>
 
 
@@ -23,13 +23,28 @@
 
 
 <%#= link_to 'Email a friend', '#', :onclick => "$('#notify_friend_form').slideDown()" %>
-<%= link_to 'Add New Comment', '#', :onclick => "$('#new_comment_form').slideDown()" %>
-<%= render 'notify_friend' %>
-<%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment,:html=>{:style=>'display:none',:id=>'new_comment_form'} do |f| %>
-<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
-<%= f.submit  %>
-<%= link_to 'Cancel', '#', :onclick => "$('#new_comment_form').slideUp()" %>
-<% end %>
+<%#= link_to 'Add New Comment', '#', :onclick => "$('#new_comment_form').slideDown()" %>
+<%#= render 'notify_friend' %>
+<%#= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment,:html=>{:style=>'display:none',:id=>'new_comment_form'} do |f| %>
+<%#= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
+<%#= f.submit  %>
+<%#= link_to 'Cancel', '#', :onclick => "$('#new_comment_form').slideUp()" %>
+<%#= end %>
 
+
+<!--comments-->	
+		<div id="comment_<%=@micropost.id -%>">
+			<%= render @micropost.microcomments%>
+		</div>
+<!--comments form-->	
+		<%= form_for @microcomment, :url=>micropost_path(@micropost),:action=>:add_comment,:remote=>true do |f| %>
+		<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
+		    <%= fields_for Notification.new do |n|%>
+			<%= n.hidden_field :recipient_id, :value => current_user.id %>
+			<%= n.hidden_field :micropost_id, :value => @micropost.id %>
+			<%= n.hidden_field :content, :value => current_user.name+"  has commented on your post!" %>
+			<%end%>
+		<%= f.submit  %>
+		<% end %>
 
  

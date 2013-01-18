@@ -17,7 +17,7 @@
       var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
       
       channel.bind('new_message', function(data) {
-        msg = data.content
+        msg = data.content+data.count
         dom_notify(msg);
         title_notify(msg);
         if (window.webkitNotifications) { webkit_notify(msg); }
@@ -80,13 +80,13 @@
 	</script>
 </head>
 
-<body>
+<p>=======Begin Debugging Section========</p>
 <div id="status"></div>
 <div id="notify_api"><button type="button" id="ask_notify_permission">Enable Webkit Notifications</button></div>
-
-		<p class="notice">Notice:<%= notice %></p>
-		<p class="alert"><%= alert %></p>
-  </head>   
+<p class="notice">Notice<%= notice %></p>
+<p class="alert"><%= alert %></p>
+<p>=======End Debugging Section========</p>
+ 
    
 <body>
 <div id="super-container">

@@ -49,6 +49,7 @@ def create
     end
 end
 def show
+    @notifications = current_user.received_notifications
 @outgoing=Outgoing.find(params[:id])
 end
 
