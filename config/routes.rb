@@ -54,7 +54,16 @@ PostPet::Application.routes.draw do
   			match 'users/sign_out' =>'devise/sessions#destroy'
   		end
 	end
-	resources :users
+	
+	
+	#microcomments 
+	match 'microcomments/:id/delete'=>'microcomments#destroy'
+	  	
+    resources :users do
+		member do
+	  		get :following, :followers
+	  	end
+	end
  
   #static pages
 	get "static_pages/home"
@@ -74,22 +83,8 @@ PostPet::Application.routes.draw do
     
    #relationships 
    resources :relationships, :only=>[:create,:destroy]
-  
- 
-  
-    match 'outgoings/:id/delete'=>'outgoings#destroy'
-    match 'incomings/:id/delete'=>'incomings#destroy'
-    match 'incomings/:id/reply'=>'incomings#reply'
-    post 'outgoings/:id'=>'outgoings#submit_reply'
-    post 'incomings/:id'=>'outgoings#submit_reply'
-    resources :incomings
-	resources :outgoings
-	get "box/index"
-	get "box/inbox"
-	get "box/outbox"
-	get "box/unread"
-	get "users/new"
-	match '/signup' => 'users#new'
+   get "users/new"
+   match '/signup' => 'users#new'
   
    
    resources :microposts do

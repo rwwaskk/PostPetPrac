@@ -1,5 +1,0 @@
-
-<%=@incoming.content%>
-<%=link_to 'delete',incoming_path(@incoming)+'/delete'%>
-<%=link_to 'reply',incoming_path(@incoming)+'/reply',:to_id=>@incoming.from_id%>
-<%=link_to 'back',:controller=>'box',:action=>'index'%>

@@ -1,5 +1,8 @@
-<%= form_for(current_user.relationships.build(followed_id: @user.id),
-             remote: true) do |f| %>
-<div><%= f.hidden_field :followed_id %></div>
-<%= f.submit "Follow", class: "test" %>
-<% end %>
+<%= form_for(current_user.relationships.build(followed_id: @user.id)) do |f| %>
+		<%= f.hidden_field :followed_id %>
+		<%= fields_for Notification.new do |n|%>
+			<%= n.hidden_field :recipient_id, :value => current_user.id %>
+			<%= n.hidden_field :content, :value =>"you have a new follower!" %>
+		<%end%>
+		<%= f.submit "follow" %>
+	<% end %>

@@ -1,6 +1,11 @@
 class MicropostsController < ApplicationController
 
-	   def destroy
+	before_filter :set_notifications
+	def set_notifications
+  		@notifications = current_user.received_notifications
+	end
+
+	def destroy
 		@microposts=current_user.microposts
 		@user=current_user
 		@micropost=Micropost.find_by_id(params[:id])

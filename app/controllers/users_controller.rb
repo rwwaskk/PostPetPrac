@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
 
+	before_filter :set_notifications
+	def set_notifications
+  		@notifications = current_user.received_notifications
+	end
+
+
+
 	def feed
 	    @micropost = current_user.microposts.build(params[:micropost])
 	    
 		#@micropost = current_user.microposts.new#build(params[:micropost])
 		@microposts=current_user.feed
-		@notifications = current_user.received_notifications
 		@microcomment = @micropost.microcomments.build(params[:microcomment]) do |c|
     	c.user=current_user
     	end
@@ -31,7 +37,6 @@ class UsersController < ApplicationController
 		@microposts = @user.microposts
 		@micropost=Micropost.new
 		@microcomment=Microcomment.new
-		@notifications = current_user.received_notifications
 		@count=@notifications.count
 	end
 
@@ -58,9 +63,8 @@ class UsersController < ApplicationController
     	@title = "Followers"
     	@user = User.find(params[:id])
     	@users = @user.followers
-    	@notifications = current_user.received_notifications
-    	render 'show_follow'
-  end
+    	render 'show_following'
+  	end
 
 
 end

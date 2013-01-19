@@ -1,1 +1,2 @@
-$("#microposts").html("<%= escape_javascript(render @user.microposts.desc) %>");
+$("#microposts").html("<%= escape_javascript(render @microposts.desc) %>");
+$("#my_microposts").html("<%= escape_javascript(render @user.microposts.desc) %>");

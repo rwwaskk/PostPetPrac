@@ -1,16 +1,15 @@
-<h2>Incoming</h2>
+<%=link_to 'received','#',:onclick=>"$('#received_messages').show();
+                                     $('#sent_messages').hide();"%>
 
-<% if @incoming_messages.any? %>
-<%= render :partial => @incoming_messages %>
-<% else %>
-<p>How sad, you have no messages.</p>
-<% end %>
+<%=link_to 'sent','#',:onclick=>"$('#received_messages').hide();
+                                     $('#sent_messages').show();"%>
 
-
-<h2>Outgoing</h2>
-
-<% if @outgoing_messages.any? %>
-<%= render :partial => @outgoing_messages %>
-<% else %>
-<p>How sad, you have no messages.</p>
-<% end %>
+<div id="messages">
+	<div id="received_messages">
+		<%= render 'incoming'%>
+	</div>
+	
+	<div id="sent_messages" style="display:none">
+	<%= render 'outgoing'%>
+	</div>
+</div>

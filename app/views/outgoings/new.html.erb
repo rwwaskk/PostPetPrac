@@ -1,7 +1,0 @@
-
-<%= form_for @outgoing do |f| %>
-     <%= f.text_field :title, placeholder: "title"%><br/>
-     <%= f.text_area :content, placeholder: "enter new message",:rows=>15 %>
-     <%= f.hidden_field :to_id, :value=> params[:to_id] %>
-<%= f.submit "Send"%>
-<% end %>

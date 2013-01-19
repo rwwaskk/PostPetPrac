@@ -6,20 +6,12 @@
 			<%=notification.micropost_id%>
 			<%=link_to 'view',micropost_path(:id=>notification.micropost_id) unless notification.micropost_id.nil?%>
 			
-			
 			<%if notification.micropost_id.nil?%>
 			<%=link_to 'view', followers_user_path(current_user)%>
-		    <%end%>
-			
-			
+			<%end%>
 			
 			<%= link_to 'Delete',notification_path(notification),:method=>:delete,:remote=>true,
 			:onclick=>"$('#notification_#{notification.id}').fadeOut();"%>
-			
-			
-			
-			
-			
 		</tr>
 	</ul>
 </div>

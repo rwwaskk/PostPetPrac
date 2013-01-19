@@ -1,0 +1,6 @@
+<h2>Outgoing</h2>
+<% if @outgoing_messages.any? %>
+	<%= render :partial => @outgoing_messages %>
+<% else %>
+	<p>How sad, you have no messages.</p>
+<% end %>

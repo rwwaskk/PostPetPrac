@@ -1,40 +1,22 @@
 <% @user ||= current_user %>
 <a href="<%= following_user_path(@user) %>">
-    <%= @user.followed_users.count %>
-   
-    following
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-   
-  <%= @user.followers.count %>
-   
-    followers
-  </a>
- <br></br>
- <% if !current_user.following?(@user) %> 
+	<%= @user.followed_users.count %>  following
+</a>
+
+<a href="<%= followers_user_path(@user) %>">
+	<%= @user.followers.count %>  followers
+</a>
+<br/>
  
- 
- <%= form_for(current_user.relationships.build(followed_id: @user.id),
-             remote: true) do |f| %>
-<div><%= f.hidden_field :followed_id %></div>
 
 
-			<%= fields_for Notification.new do |n|%>
-			<%= n.hidden_field :recipient_id, :value => current_user.id %>
-			<%= n.hidden_field :content, :value =>"you have a new follower!" %>
-			<%end%>
+<% if !current_user.following?(@user) %>  
+	<div id="follow">
+		<%= render 'shared/follow'%>
+	</div>
+<%else%>
 
-
-<%= f.submit "follow" %>
-<% end %>
-
+<div id="unfollow"> 
+	<%= render 'shared/unfollow'%>
+</div>
 <%end%>
-
-<% if current_user.following?(@user) %>
-<%= form_for(current_user.relationships.find_by_followed_id(@user),
-             html: { method: :delete },
-             remote: true) do |f| %>
-  <%= f.submit "unfollow"%>
-<% end %>
-<% end %>
-
