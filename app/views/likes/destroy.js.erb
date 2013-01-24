@@ -1,0 +1,11 @@
+$("#like_form_<%= @micropost.id -%>_destroy").html("<%= escape_javascript(render :partial => "likes/like_form",:locals => {:micropost => @micropost}) %>");
+$("#like_form_<%= @micropost.id -%>_destroy").show();
+
+$("#unlike_form_<%= @micropost.id -%>_create").hide();
+$("#unlike_form_<%= @micropost.id -%>").hide();
+
+$("#like_label_<%= @micropost.id -%>_create").hide();
+				
+			
+
+			

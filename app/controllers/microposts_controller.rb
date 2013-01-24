@@ -86,7 +86,7 @@ class MicropostsController < ApplicationController
   			if @microcomment.save! && @notification.save!
   				@notifications = current_user.received_notifications
   				@count=@notifications.count
-  				Pusher['private-'+params[:notification][:recipient_id]].trigger('new_message', {:count => @count,:content=> 'test'})
+  				Pusher['private-'+params[:notification][:recipient_id]].trigger('new_message', {:count => @count,:content=> current_user.name+' has commented on your post!'})
       			
             
   				flash[:success] = "comments created!"

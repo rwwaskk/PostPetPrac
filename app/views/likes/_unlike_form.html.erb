@@ -1,0 +1,3 @@
+<%= form_for @like, html: { method: :delete } ,:remote=> true do |f| %>
+	<%= f.submit "unlike",:onclick =>"$('#like_label_#{micropost.id}').hide();" %>
+<% end %>

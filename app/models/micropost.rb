@@ -3,6 +3,7 @@ class Micropost < ActiveRecord::Base
   attr_accessible :content, :user_id,:photo
   has_many :microcomments
   belongs_to :user
+  has_many :users_like_micropost, :through=> :likes,:foreign_key => :user_id,:source => :user
   
   scope :desc, order("microposts.created_at DESC")
   

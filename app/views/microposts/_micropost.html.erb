@@ -35,8 +35,37 @@
 			<%= render micropost.microcomments%>
 		</div>
 		
-		<!--comments form-->	
-		<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
+<!--begin of original like/unlike forms-->	
+<% @like=Like.find(:all,:conditions => {:user_id=>current_user.id,:micropost_id=>micropost.id})[0]%>	
+	
+	<% if !@like.nil?%>
+	
+		<div id="like_label_<%= micropost.id -%>">
+			<%= render 'likes/liked_label'%>
+		</div>
+			
+		<div id="unlike_form_<%= micropost.id -%>">
+			<%= render :partial=>'likes/unlike_form',:locals=>{:like=>@like,:micropost=>micropost}%>
+		</div>
+	
+	<%else%>
+	
+		<div id="like_form_<%= micropost.id -%>">
+			<%= render :partial=> 'likes/like_form',:locals=>{:micropost => micropost}%>
+		</div>
+	
+	<%end%>
+<!--end of original like/unlike forms-->	
+
+<!--for destroy.js.erb-->
+	
+	<div id="like_form_<%= micropost.id -%>_destroy"></div>	
+		
+<!--for create.js.erb-->
+	<div id="like_label_<%= micropost.id -%>_create"></div>
+	<div id="unlike_form_<%= micropost.id -%>_create"></div>
+
+<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
 		<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
 		    <%= fields_for Notification.new do |n|%>
 			<%= n.hidden_field :recipient_id, :value => current_user.id %>

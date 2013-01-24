@@ -1,0 +1,10 @@
+<%= form_for Like.new ,:remote=>true do |f| %>
+	<%= f.hidden_field :micropost_id,:value=>micropost.id %>
+	<%= f.hidden_field :user_id,:value=>current_user.id %>
+		<%= fields_for Notification.new do |n|%>
+				<%= n.hidden_field :recipient_id, :value => current_user.id %>
+				<%= n.hidden_field :micropost_id, :value => micropost.id %>
+				<%= n.hidden_field :content, :value => current_user.name+"  liked on your post!" %>
+		<%end%>
+	<%= f.submit "like"%>
+<% end %>
