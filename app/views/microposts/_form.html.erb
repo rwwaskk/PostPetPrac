@@ -1,8 +1,9 @@
-<!--Micropost Form-->
+<div style="margin-top:20px">
 <%= form_for @micropost,:html=>{:style=>"display:none",:id=>'new_post_form'},:remote=>true do |f| %>
 	<%= f.text_area :content, placeholder: "enter new status",:rows=>2 %><br/>
 	<%=f.label 'upload a photo'%>
 	<%= f.file_field :photo%>
-	<%= f.submit %>
+	<%= f.submit 'create' ,:class=>"btn btn-info btn-large"%>
 	<%= link_to 'Cancel', '#', :onclick => "$('#new_post_form').slideUp()" %>
 <% end %>
+</div>

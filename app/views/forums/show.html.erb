@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h3>论坛名称：
+<%=  @forum.name  %>  
+</h3>
+<table>  
+  <tr>  
+    <th width="60%">话题</th>  
+    <th width="10%">回复</th>  
+    <th width="30%">回复时间</th>  
+  </tr>  
+  <% for topic in @forum.topics %>  
+    <tr>  
+      <td><%= link_to h(topic.name), forum_topic_path(@forum,topic) %>  
+      <td><%= topic.posts.count %></td>  
+      <td class="right">by <%=link_to User.find(topic.last_post_id).name,user_path(User.find(topic.last_post_id))%>
+      	at 
+      					<%=topic.last_post_at%></td>  
+      <td><%= link_to "Show", forum_topic_path(@forum,topic) %></td>  
+      <td><%= link_to "Edit", edit_forum_topic_path(@forum,topic) %></td>  
+      <td><%= link_to "Destroy", topic, :confirm => 'Are you sure?', :method => :delete %></td>  
+    </tr>  
+  <% end %>  
+</table>  
+<p><%= link_to "发言", new_forum_topic_path(@forum) ,:class=>"btn btn-info"%></p> 

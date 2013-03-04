@@ -1,0 +1,10 @@
+<%= form_for Like.new ,:remote=>true do |f| %>
+	<%= f.hidden_field :photo_id,:value=>@photo.id %>
+	<%= f.hidden_field :user_id,:value=>current_user.id %>
+		<%= fields_for Notification.new do |n|%>
+				<%= n.hidden_field :recipient_id, :value => current_user.id %>
+				<%#= n.hidden_field :photo_id, :value => @photo.id %>
+				<%= n.hidden_field :content, :value => current_user.name+"  liked on your photo!" %>
+		<%end%>
+	<%=f.submit '  ',:class=>"icon-heart icon-white"%>	
+<% end %>

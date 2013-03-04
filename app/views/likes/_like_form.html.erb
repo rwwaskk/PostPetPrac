@@ -6,5 +6,6 @@
 				<%= n.hidden_field :micropost_id, :value => micropost.id %>
 				<%= n.hidden_field :content, :value => current_user.name+"  liked on your post!" %>
 		<%end%>
-	<%= f.submit "like"%>
+	<%=f.submit '  ',:class=>"icon-heart icon-white"%>	
+	
 <% end %>

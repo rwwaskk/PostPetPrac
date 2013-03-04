@@ -1,16 +1,11 @@
-<% @user ||= current_user %>
 <%= form_for(@album, :html => { :multipart => true }) do |f| %>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<%= f.fields_for :photos do |photo|%>
-<%if photo.object.new_record?%>
-<%=photo.file_field :image%>
+	<%=f.label :name%>
+	<%=f.text_field :name%>
+	<%=f.label :description%>
+	<%=f.text_area :description,:rows=>3%>
+	</br>
+	<%= f.submit :class=>"btn btn-primary " %>
 <%end%>
-<%end%>
-<%= f.submit %>
-<%end%>
-
-
 
 
  

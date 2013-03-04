@@ -3,7 +3,9 @@ class StaticPagesController < ApplicationController
 
   before_filter :set_notifications
   def set_notifications
+        if user_signed_in?
   		@notifications = current_user.received_notifications
+  		end
 	end
 
 

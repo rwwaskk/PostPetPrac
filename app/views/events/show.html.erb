@@ -1,0 +1,20 @@
+<%=@event.name%>
+</br>
+<%=@event.description%>
+
+<%= form_for(@event, :html => { :multipart => true }) do |f| %>
+	<%= f.fields_for :photos do |photo|%>
+		<%if photo.object.new_record?%>
+			<%=photo.file_field :image%>
+			<%=photo.hidden_field :user_id,:value=>current_user.id%>
+		<%end%>
+<%end%>
+<%= f.submit 'add' ,:class=>'btn btn-primary' %>
+<%end%>
+
+<%=render @event.photos%>
+
+
+
+
+ 

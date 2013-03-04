@@ -1,11 +1,10 @@
-$("#like_form_<%= @micropost.id -%>_destroy").html("<%= escape_javascript(render :partial => "likes/like_form",:locals => {:micropost => @micropost}) %>");
-$("#like_form_<%= @micropost.id -%>_destroy").show();
+<%if !@micropost.nil?%>
+$("#like_form_<%= @micropost.id -%>").html("<%= escape_javascript(render :partial => "likes/like_form",:locals => {:micropost => @micropost}) %>");
+$("#likes_count_<%= @micropost.id -%>").html("<%= escape_javascript(render :partial=>'likes/likes_count',:locals=>{:like=>@like,:micropost=>@micropost})%>");
 
-$("#unlike_form_<%= @micropost.id -%>_create").hide();
-$("#unlike_form_<%= @micropost.id -%>").hide();
-
-$("#like_label_<%= @micropost.id -%>_create").hide();
-				
-			
-
-			
+<%end%>
+<%if !@photo.nil?%>
+$("#like_form_for_photo_<%= @photo.id -%>").html("<%= escape_javascript(render :partial=> 'likes/like_form_for_photo',:locals=>{:photo => @photo})%>");
+$("#likes_count_for_photo_<%= @photo.id -%>").html("<%= escape_javascript(render :partial=>'likes/likes_count_for_photo',:locals=>{:like=>@like,:photo=>@photo})%>");
+<%end%>
+		

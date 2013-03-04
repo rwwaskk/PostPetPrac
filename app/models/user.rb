@@ -22,7 +22,10 @@ class User < ActiveRecord::Base
 
 	#micropost & comments
 	has_many :microposts,:dependent=>:destroy
+	has_many :photos, :dependent=>:destroy
 	has_many :microcomments,:dependent=>:destroy
+	has_many :posts
+	has_many :topics
 	
 	#albums, nested_attributes:photos
 	has_many :albums,:dependent=>:destroy
@@ -44,6 +47,9 @@ relationships:
 	#messages
  	 has_many :received_messages, :class_name => 'Message', :foreign_key => :recipient_id
  	 has_many :sent_messages,     :class_name=>'Message',   :foreign_key => :sender_id
+ 	 
+ 	 has_many :events
+ 	 
   	 
   	#notifications
   	 has_many :received_notifications, :class_name=>'Notification', :foreign_key=> :recipient_id

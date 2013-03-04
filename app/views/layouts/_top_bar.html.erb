@@ -1,19 +1,24 @@
-<div id='top_bar'>
-	<ul>
-		<% if user_signed_in? %>
-			<li><%= link_to 'sign out', destroy_user_session_path, :method=>'delete' %> </tr>
-			<li><%#=link_to "messages", :controller=>'box',:action=>'index'%></li>
-			<li><%=link_to "messages", :controller=>'messages',:action=>'index'%></li>
-			<li>
-			<%=link_to "notifications",'#',:remote=>true,:id=>"notification__details_link",
-  		        :onclick=>"$('#notification_list').toggle();"%>
-		    <span id="notify"><%= render 'layouts/notification'%></span> 
-		    	<div id="notification_list">
-	      			<%= render @notifications%>
-				</div>
-			</li>
- 		<%else%>
-			<%= link_to 'sign in', new_user_session_path %>    
-		<%end%>
+<% if user_signed_in? %>
+	<li class="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>Account<b class="caret"></b></a>
+	<ul class="dropdown-menu">
+	<li><%=link_to " ", :controller=>'messages',:action=>'index' do%>
+	<i class="icon-envelope"></i> message
+	<%end%></li>
+	<li><%=link_to '#',:remote=>true,:id=>"notification__details_link",
+  		        :onclick=>"$('#notification_list').toggle();" do%>
+  		  <i class="icon-leaf"></i> notifications
+  		  <%end%>
+		<span id="notify"><%= render 'layouts/notification'%></span> 
+		<div id="notification_list">
+	    	<%= render @notifications%>
+		</div>
+	</li>
+	<li><%= link_to 'sign out', destroy_user_session_path, :method=>'delete' %> </li>
 	</ul>
-</div>
+</li>
+	
+<%else%>
+	<%= link_to 'sign in', new_user_session_path %>    
+<%end%>
+	

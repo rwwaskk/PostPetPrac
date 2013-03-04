@@ -1,79 +1,94 @@
-<div id="micropost_content_<%= micropost.id -%>">
-	<ul>
-  		<tr>
-  		<!--content-->
-  		<%= micropost.content %>
+<div id="micropost_content_<%= micropost.id -%>" class="post_block" >
+	
+	
+<!--###################################User Info##############################################-->
+	
+	<div id="user_pic">
+		<ul class="thumbnails">
+			<li class="span1">
+				<% if !(User.find(micropost.user_id).photo.url=="/photos/original/missing.png")%>
+					<%= image_tag @user.photo.url(:small)%>
+				<%else%>
+					<%= image_tag "https://lh5.googleusercontent.com/-niEejNWekPM/UPSk_V4rq1I/AAAAAAAAAoc/60oFt5Dhb5c/s512/touxiang.jpg"%>
+				<%end%>
+				<h5><%=link_to micropost.user.name,user_path(micropost.user) unless micropost.user.nil? %> </h5>
+			</li>
+		</ul>
+	</div>
+
+
+<!--###################################MAIN POST CONTENT##############################################-->
+	<div class="parent">
+
+		<!--<div id="micropost_content_<%= micropost.id -%>" style="float:left">-->
+		<%= micropost.content %>
   		<% if !(micropost.photo.url=="/photos/original/missing.png")%>
- 			 <%= image_tag micropost.photo%>
- 		 <%end%>
-   		 
-   		 <!--time,user,comment count-->
-   		 Posted by <%=link_to micropost.user.name,user_path(micropost.user) unless micropost.user.nil? %> 
-    	 <%= time_ago_in_words(micropost.created_at) %> ago.
-    	 comments (<%=micropost.microcomments.count%>)
- 		 <%=link_to 'show/hide details', micropost_path(micropost),:remote=>true,:id=>"show_micropost_#{micropost.id}",
-  		 :onclick=>"$('#micropost_details_#{micropost.id}').toggle();"%>
-		 </tr>
-	</ul>  
-</div>
-
-<!--micropost options:delete,edit,comments-->
-<div id="micropost_details_<%= micropost.id -%>" class="micropost">
-   
-    <!--if is current user-->
-	<% if user_signed_in? %>
-		<% if micropost.user==current_user%>
-		    <!--edit/delete micropost-->
-			<%= link_to "Edit",:action=>'edit',:controller=>'microposts',:id=>micropost.id%>
-			<%= link_to 'Delete',micropost_path(micropost)+'/delete',:remote=>true,:id=>'destroy_post',
-			:onclick=>"$('#micropost_content_#{micropost.id}').fadeOut();
-			$('#micropost_details_#{micropost.id}').fadeOut();"%>
-		<%end%>
-	 	
-	 	<!--comments-->	
-		<div id="comment_<%=micropost.id -%>">
-			<%= render micropost.microcomments%>
-		</div>
+ 			<%= image_tag micropost.photo%>
+ 		<%end%></br>
+   		<%= time_ago_in_words(micropost.created_at) %>
+    	<%=link_to "comments("+micropost.microcomments.count.to_s+")", micropost_path(micropost),:remote=>true,:id=>"show_micropost_#{micropost.id}",
+  		 :onclick=>"$('#comment_#{micropost.id}').toggle();"%>
+		  
+<!--###################################DETAILS####################################################-->
+		<div class="child">
+			<div id="micropost_details_<%= micropost.id -%>">
+				<% @like=Like.find(:all,:conditions => {:user_id=>current_user.id,:micropost_id=>micropost.id})[0]%>	
+				<% if !@like.nil?%>
+					<div id="like_label_<%= micropost.id -%>">
+					<%#= render 'likes/liked_label'%>
+					</div>
+					<div id="like_form_<%= micropost.id -%>" style="float:left">
+						<%= render :partial=>'likes/unlike_form',:locals=>{:like=>@like,:micropost=>micropost}%>
+					</div>
+				<%else%>
+					<div id="like_form_<%= micropost.id -%>" style="float:left">
+						<%= render :partial=> 'likes/like_form',:locals=>{:micropost => micropost}%>
+					</div>
+				<%end%>
+				
+				
+				
+				<!--what is this for?
+				<div id="like_form_<%= micropost.id -%>_destroy"></div>	
+				<div id="like_label_<%= micropost.id -%>_create"></div>
+				<div id="unlike_form_<%= micropost.id -%>_create"></div>
+				-->
+				<% if user_signed_in? %>
+					<% if micropost.user==current_user%>
+						<div style="float:left;width=auto;">
+							<%= link_to "",edit_micropost_path(micropost),:class=>"icon-edit"%>
+							<%= link_to '',micropost_path(micropost)+'/delete',:remote=>true,:id=>'destroy_post',
+								:onclick=>"$('#micropost_content_#{micropost.id}').fadeOut();
+								$('#micropost_details_#{micropost.id}').fadeOut();",:class=>"icon-trash"%></div>
+					<%end%>
+					
+					<div id="likes_count_<%=micropost.id-%>">
+					<%=render :partial=>'likes/likes_count',:locals=>{:like=>@like,:micropost=>micropost}%>
+				</div>
+					<div style="clear:both"></div> 
+	 				<div id="comment_<%=micropost.id -%>" class="comment_content">
+						<%= render micropost.microcomments%>
+					</div>
+					
 		
-<!--begin of original like/unlike forms-->	
-<% @like=Like.find(:all,:conditions => {:user_id=>current_user.id,:micropost_id=>micropost.id})[0]%>	
-	
-	<% if !@like.nil?%>
-	
-		<div id="like_label_<%= micropost.id -%>">
-			<%= render 'likes/liked_label'%>
-		</div>
+		
+					<div id="comment_form">
+						<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
+							<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
+							<%= fields_for Notification.new do |n|%>
+							<%= n.hidden_field :recipient_id, :value => current_user.id %>
+							<%= n.hidden_field :micropost_id, :value => micropost.id %>
+							<%= n.hidden_field :content, :value => current_user.name+"  has commented on your post!" %>
+							<%end%></br>
+						<%= f.submit 'create' ,:class=>"btn btn-info btn-small pull-right"%>
 			
-		<div id="unlike_form_<%= micropost.id -%>">
-			<%= render :partial=>'likes/unlike_form',:locals=>{:like=>@like,:micropost=>micropost}%>
-		</div>
-	
-	<%else%>
-	
-		<div id="like_form_<%= micropost.id -%>">
-			<%= render :partial=> 'likes/like_form',:locals=>{:micropost => micropost}%>
-		</div>
-	
-	<%end%>
-<!--end of original like/unlike forms-->	
-
-<!--for destroy.js.erb-->
-	
-	<div id="like_form_<%= micropost.id -%>_destroy"></div>	
-		
-<!--for create.js.erb-->
-	<div id="like_label_<%= micropost.id -%>_create"></div>
-	<div id="unlike_form_<%= micropost.id -%>_create"></div>
-
-<%= form_for @microcomment, :url=>micropost_path(micropost),:action=>:add_comment,:remote=>true do |f| %>
-		<%= f.text_area :content, placeholder: "enter new comment",:rows=>3 %>
-		    <%= fields_for Notification.new do |n|%>
-			<%= n.hidden_field :recipient_id, :value => current_user.id %>
-			<%= n.hidden_field :micropost_id, :value => micropost.id %>
-			<%= n.hidden_field :content, :value => current_user.name+"  has commented on your post!" %>
+						<% end %>
+					</div><!--end of comment form-->
 			<%end%>
-		<%= f.submit  %>
-		<% end %>
-	<%end%>
-</div>
+					
+			</div><!--end of details-->
+		</div><!--end of child-->
+	</div><!--end of parent-->
+</div><!--end of block-->
 
+<div style="clear:both"></div> 

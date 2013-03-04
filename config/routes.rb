@@ -1,13 +1,33 @@
 PostPet::Application.routes.draw do
 	
+	
+	
+  resources :posts
+
+  resources :topics
+
+  resources :forums
+
+	#hacks
+	
 	#root page
 	root :to => 'static_pages#home'
+	
+	#part
+	
+	resources :events do 
+       resources :photos
+	end
 	
 	#feed
 	match 'users/:id/feed'=>'users#feed'
  	
  	#notify
 	post 'pusher/auth'
+	
+	
+	#like
+	resources :likes
   
   
     #messages 
@@ -34,7 +54,15 @@ PostPet::Application.routes.draw do
     #alums
   	resources :albums do 
        resources :photos
-	end
+    end
+    
+    #forums
+    resources :forums do 
+    	resources :topics do
+    		resources :posts 
+    	end
+    end
+	
 	resources :photos
   	get "album/new"
 	get "album/create"

@@ -1,0 +1,10 @@
+<div id="event">
+活动名称:<%=link_to event.name, event_path(event)%>
+</br>
+活动细节:<%=event.description%>
+</br>
+发起人:<%=link_to User.find(event.user_id).name,user_path(User.find(event.user_id))%>
+</br>
+<%=link_to image_tag(event.photos[0].image.url(:thumb)) ,event_photos_path(event) unless event.photos[0].nil?%>
+</br>
+</div>

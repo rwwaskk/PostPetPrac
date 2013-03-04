@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<b>Welcome to Pet2Pet Forum!</b> 
+<table>  
+  <tr>  
+    <th width="70%">论坛名称</th>  
+    <th width="30%">最后回复</th>  
+  </tr>  
+  <% for forum in @forums %>  
+    <tr>  
+      <td><h4><%= link_to h(forum.name), forum_path(forum.id) %></h4>  
+        <small><%= forum.topics.count %> topics</small><br />  
+        <%=h forum.description %></td>  
+      <td class="right">by <%=link_to User.find(forum.topics.desc.first.last_post_id).name,user_path(User.find(forum.topics.desc.first.last_post_id))%>
+      	at 
+      					<%=forum.topics.desc.first.last_post_at%></td>  
+      <td><%= link_to "Show", forum %></td>  
+      <td><%= link_to "Edit", edit_forum_path(forum) %></td>  
+      <td><%= link_to "Destroy", forum, :confirm => 'Are you sure?', :method => :delete %></td>  
+    </tr>  
+  <% end %>  
+</table>  
+<p><%= link_to "New Forum", new_forum_path,:class=>"btn btn-info" %></p>  

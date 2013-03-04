@@ -17,11 +17,13 @@ class LikesController < ApplicationController
 	
 	def create
 		@like = current_user.likes.new(params[:like])
-		@micropost=Micropost.find(@like.micropost_id)
+		@micropost=Micropost.find_by_id(@like.micropost_id)
+		@photo=Photo.find_by_id(@like.photo_id)
 		@notification = Notification.new(params[:notification])
+		
 		if @like.save && @notification.save!
 		    #redirect_to like_path(@like)
-      		flash[:success] = "post created!"
+      		flash[:success] = "liked it:)"
       		@notifications = current_user.received_notifications
       		@count=@notifications.count
       		Pusher['private-'+params[:notification][:recipient_id]].trigger('new_message', {:count => @count,:content=> current_user.name+ ' has liked your post!'})
@@ -40,9 +42,10 @@ class LikesController < ApplicationController
 	
 		
 		@like=Like.find_by_id(params[:id])
-		@micropost=Micropost.find(@like.micropost_id)
+		@micropost=Micropost.find_by_id(@like.micropost_id)
+		@photo=Photo.find_by_id(@like.photo_id)
    		if @like.destroy
-   			flash[:success] = "like deleted!"
+   			flash[:success] = "disliked"
         end
         respond_to do |format|
      		format.html { redirect_to users_path }

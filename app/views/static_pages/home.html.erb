@@ -1,4 +1,20 @@
 <%=render 'welcome'%>
+
+<div id="myCarousel" class="carousel slide">
+	<!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item"> <%= image_tag 'https://lh3.googleusercontent.com/-VndKmEERZho/UOf28IqHJeI/AAAAAAAAAn0/Thg-J3bvADI/s510/30.jpg' %> </div>
+    <div class="item">	 <%= image_tag 'https://lh5.googleusercontent.com/-UFzSXkEYqhU/UOf21muX4YI/AAAAAAAAAnU/dxNwxxfjJho/s510/26.jpg' %>		</div>
+    <div class="item">   <%= image_tag 'https://lh3.googleusercontent.com/-hZIY8TDszEE/UOf231poaQI/AAAAAAAAAnk/rgT3SA7cgQc/s510/27.jpg' %>		</div>
+  	<div class="item">   <%= image_tag 'https://lh6.googleusercontent.com/-hFfyFkHRwpg/UOf2syvTKQI/AAAAAAAAAms/yWmbsG0W3YY/s510/22.jpg'%>		</div>
+  	<div class="item">   <%= image_tag 'https://lh3.googleusercontent.com/-9e5fkbQ1q8Y/UOf2uRtS4vI/AAAAAAAAAm0/dvRwjB4b_yM/s510/23.jpg' %>		</div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+<!--
 <div id="slideshow">
    <div>
      <%= image_tag 'https://lh6.googleusercontent.com/-hFfyFkHRwpg/UOf2syvTKQI/AAAAAAAAAms/yWmbsG0W3YY/s510/22.jpg'%>
@@ -30,8 +46,11 @@
     <div>
        <%= image_tag 'https://lh3.googleusercontent.com/-VndKmEERZho/UOf28IqHJeI/AAAAAAAAAn0/Thg-J3bvADI/s510/30.jpg' %>
    </div>
-</div>
+</div>-->
 
+
+
+<!--
 <script>
 $("#slideshow > div:gt(0)").hide();// Select all elements at an index greater than index within the matched set.
 
@@ -43,6 +62,6 @@ setInterval(function() {
     .end()//End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.
     .appendTo('#slideshow');//Insert every element in the set of matched elements to the end of the target.
 },  4000);
-</script>
+</script>-->
 
 

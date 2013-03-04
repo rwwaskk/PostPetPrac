@@ -1,0 +1,9 @@
+<%= form_for :topic,:url=>{:action=> :create} do |f| %>
+	<%=f.label :name%>
+	<%=f.text_field :name%>
+	<%=f.label :content%>
+	<%=f.text_field :content%>
+	
+	</br>
+	<%=f.submit :class=>"btn btn-info"%>
+<%end%>

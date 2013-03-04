@@ -1,19 +1,19 @@
-<nav>
-
-<ul>
-<li><%=link_to "Home", root_url%></li>
-
+<li><%=link_to  root_url do %>
+<i class="icon-home icon-white"></i>Home
+<%end%>
+</li> 
 <% if user_signed_in? %>
-<li><%=link_to "Feeds", :controller=>"users",:action=>"feed",:id=>current_user.id%></li>
-<li><%=link_to "My Page", :controller=>"users",:action=>"show",:id=>current_user.id%></li>
+	<li><%=link_to  'Feed',:controller=>"users",:action=>"feed",:id=>current_user.id %>
+	</li>
+	<li><%=link_to "My Page", :controller=>"users",:action=>"show",:id=>current_user.id%></li>
+	<li><%=link_to 'Forum', forums_path%></li>
+	<li><%=link_to 'Park', events_path%></li>
+		<%= render 'layouts/top_bar'%>
 <%else%>
-<li><%=link_to "Feeds", root_url%></li>
-<li><%=link_to "My Page", root_url%></li>
+	<li><%=link_to "Feeds", root_url%></li>
+	<li><%=link_to "My Page", root_url%></li>
+	<li><a href="#">Market</a></li>
+	<li><a href="#">Park</a></li>
 <%end%>
 
-<li><a href="#">Market</a></li>
-<li><a href="#">Park</a></li>
-</ul>
-
-
-</nav>
+	

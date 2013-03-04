@@ -11,56 +11,62 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117204144) do
+ActiveRecord::Schema.define(:version => 20130303154807) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "albums", ["user_id", "created_at"], :name => "index_albums_on_user_id_and_created_at"
 
-  create_table "chat_users", :force => true do |t|
-    t.string   "nickname"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "chats", :force => true do |t|
-    t.string   "owner"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "channel"
-  end
-
-  create_table "incomings", :force => true do |t|
-    t.integer  "from_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "title"
-    t.string   "content"
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
     t.integer  "user_id"
-    t.boolean  "unread"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
+
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "micropost_id"
+    t.integer  "photo_id"
+    t.integer  "album_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "likes", ["album_id", "user_id"], :name => "index_likes_on_album_id_and_user_id", :unique => true
+  add_index "likes", ["micropost_id", "user_id"], :name => "index_likes_on_micropost_id_and_user_id", :unique => true
+  add_index "likes", ["photo_id", "user_id"], :name => "index_likes_on_photo_id_and_user_id", :unique => true
 
   create_table "messages", :force => true do |t|
     t.string   "subject"
     t.text     "body"
     t.integer  "recipient_id"
     t.integer  "sender_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "microcomments", :force => true do |t|
     t.string   "content"
     t.integer  "micropost_id"
     t.integer  "user_id"
+    t.integer  "photo_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "photo_id"
   end
 
   add_index "microcomments", ["user_id", "created_at"], :name => "index_microcomments_on_user_id_and_created_at"
@@ -83,18 +89,11 @@ ActiveRecord::Schema.define(:version => 20130117204144) do
     t.integer  "micropost_id"
   end
 
-  create_table "outgoings", :force => true do |t|
-    t.integer  "to_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.text     "content"
-    t.string   "title"
-  end
-
   create_table "photos", :force => true do |t|
     t.string   "description"
     t.integer  "album_id"
+    t.integer  "event_id"
+    t.integer  "user_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
@@ -105,6 +104,16 @@ ActiveRecord::Schema.define(:version => 20130117204144) do
   end
 
   add_index "photos", ["album_id", "created_at"], :name => "index_photos_on_album_id_and_created_at"
+  add_index "photos", ["event_id", "created_at"], :name => "index_photos_on_event_id_and_created_at"
+  add_index "photos", ["user_id", "created_at"], :name => "index_photos_on_user_id_and_created_at"
+
+  create_table "posts", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "topic_id"
+    t.integer  "user_id"
+  end
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -116,6 +125,17 @@ ActiveRecord::Schema.define(:version => 20130117204144) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "last_post_id"
+    t.datetime "last_post_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "forum_id"
+    t.integer  "user_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -1,26 +1,26 @@
-<!--UserInfo-->
-<div id="userInfo">
-	<%=render 'userInfo' %>
-</div>
 
-<%=render  'my_nav'%> 
-		
+<%= render 'microposts/form'%>
 <% if !@user.microposts.any? %>
-	<p>no posts</p>
+	<h3>no posts</h3>
+	<%= link_to 'Add New Status','#',:onclick => "$('#new_post_form').slideDown()",:class=>"btn btn-info btn-medium"%>
 <%else%>
-	<p>posts (<%= @user.microposts.count %>)</p>
-    <div id="my_microposts">
-    	<%= render @user.microposts.desc %>
-    </div>
+	<div class="page-header"><h3>posts (<%= @user.microposts.count %>)</h3></div>
+	<%= link_to 'Add New Status','#',:onclick => "$('#new_post_form').slideDown()",:class=>"btn btn-info btn-medium"%>
+	
+	<div id="microposts" style="margin-top:10px">
+	<%= render @user.microposts.desc %>
+	</div>
 <% end %>
      	
 <% if !@user.albums.any? %>
-	<p>no albums</p>
+	<h3>no albums</h3>
+	<%= link_to  'New Album', new_album_path,:class=>"btn btn-info btn-medium"%>
 <%else%>
-	<p>albums (<%= @user.albums.count %>)</p>
-    <%= render @user.albums %>
+	<h3>albums (<%= @user.albums.count %>)</h3>
+	<%= link_to 'New Album', new_album_path,:class=>"btn btn-info btn-medium"%>
+	<%= render @user.albums %>
 <% end %>
-  
+
 
 <!--<a href="/chat_notify"  style="padding-left:0px;" rel="popup console 350 350" id="notify">instant chat!</a> -->
 <%#=link_to 'instant chat' ,'/chat', :id=>'notify',:style=>"padding-left:0px", :rel=>"popup console 350 350"%>

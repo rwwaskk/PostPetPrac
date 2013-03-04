@@ -1,6 +1,8 @@
 <% if !user_signed_in? %>
-<p>welcome to the pet-only community!</p>
-<%= link_to 'sign up', new_user_registration_path %> <span> or </span>
-<%= link_to 'sign in', new_user_session_path %>  
+	<div class="hero-unit">
+		<h2>welcome to the pet-only community!</h2>
+		<%= link_to 'sign up', new_user_registration_path ,:class=>"btn btn-primary"%> <span> or </span>
+		<%= link_to 'sign in', new_user_session_path,:class=>"btn btn-primary" %>  
+ 	</div>
 <%end%>
- 
+

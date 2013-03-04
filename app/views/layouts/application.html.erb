@@ -11,7 +11,9 @@
     <%= javascript_include_tag "http://js.pusher.com/1.11/pusher.min.js"%>
     <%= javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js" %>
     <%= javascript_include_tag "realtime-notifications/src/PusherNotifier.js"%>
-    <%= stylesheet_link_tag "realtime-notifications/src/lib/gritter/css/jquery.gritter.css" %>    
+    <%= stylesheet_link_tag "realtime-notifications/src/lib/gritter/css/jquery.gritter.css" %>  
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <script>
     $(function() {
       var pusher = new Pusher('762d91d209496e530276'); // Replace with your app key
@@ -80,7 +82,7 @@
     });
 	</script>
 </head>
-
+<!--
 <p>=======Begin Debugging Section========</p>
 <div id="status"></div>
 <div id="notify_api"><button type="button" id="ask_notify_permission">Enable Webkit Notifications</button></div>
@@ -88,19 +90,51 @@
 <p class="alert"><%= alert %></p>
 <p>=======End Debugging Section========</p>
  
-   
+  --> 
 <body>
-<div id="super-container">
-    <%= render 'layouts/top_bar'%>
-	<%= render 'layouts/header' %>
-	<%= render 'layouts/nav'%>
-	<section>
+	
+	
+	<!--<div id="super-container">-->
+    	<!--<%= render 'layouts/header' %>-->
+		<!--<%= render 'layouts/nav'%>-->
+		<!--<section>-->
+		
+		
+		<!--</section>-->
+		<!--<%= render 'layouts/footer' %>-->
+		
+		
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/">Pet To Pet</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+          <%= render 'layouts/nav'%>
+          </ul>
+        </div><!--end of nav-collapse-->
+      </div><!--end of container-->
+    </div><!--end of navbar-inner-->
+  </div><!--end of navbar navar-fixed-top-->
+	
+<div class="container">
+	<div class="row">
+		
+	    <div class="span10"><%= yield %></div>
+      	<div class="span2">
+      	
+      		<% if @userInfo%>
+      		<%=render 'userInfo' %>
+      		<%end%>
+      	</div><!--end of span3-->
+      	
+    </div><!--end of row-->
+</div><!--end of container-->
 
-		<div id="content">
-		<%= yield %>
-		</div>
-		<%= render 'layouts/footer' %>
-	</section>
-</div>
 </body>
 </html>

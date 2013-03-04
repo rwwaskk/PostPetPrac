@@ -1,8 +1,4 @@
-<%= form_for @micropost do |f| %>
-<%= f.text_area :content, placeholder: "enter new status",:rows=>2 %>
-<br/>
-<%=f.label 'upload a photo'%>
-<%= f.file_field :photo%>
-<%= f.submit %>
-
-<% end %>
+<%= form_for @micropost, :url => micropost_path(@micropost), :html => { :class => "edit_micropost", :id => "edit_micropost" } do |f| -%>
+  <input name="_method" type="hidden" value="put" />
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>

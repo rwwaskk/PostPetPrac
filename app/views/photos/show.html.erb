@@ -1,50 +1,38 @@
+<%if !@album.nil?%>
+	<%=link_to image_tag(@photo.image.url(:medium)),album_photo_path(@album,@next)%></br>
+	<div id="photo_description"><%=@photo.description%></div>
+	by <%=link_to User.find(@photo.user_id).name,user_path(User.find(@photo.user_id))%>
+	<%=link_to '','#',:onclick => "$('#photo_description_form').toggle()",:class=>"icon-edit"%>
+	<div id="photo"></div>
+	<%= form_for @photo,:remote=>true,:html=>{:style=>"display:none",:id=>'photo_description_form'} do |f| %>
+		<%= f.text_area :description, placeholder: "enter descriptions",:rows=>2 %><br/>
+		<%= f.submit 'add descripton',:class=>"btn btn-info" %>
+	<% end %>
+<%else%>
+	<%=link_to image_tag(@photo.image.url(:medium)),event_photo_path(@event,@next)%></br>
+	<div id="photo_description"><%=@photo.description%></div>
+	by <%=link_to User.find(@photo.user_id).name,user_path(User.find(@photo.user_id))%>
+	<%=link_to '','#',:onclick => "$('#photo_description_form').toggle()",:class=>"icon-edit"%>
 	
-		
-		<% if user_signed_in? %>
-		<%if @photo.album.user==current_user%>
-		<%= link_to 'Edit', edit_photo_path(@photo) %> |
-		<%= link_to 'Back', album_path(@album) %>
-        <%= link_to 'delete',photo_path(@photo)+'/delete'%>
-        <%end%>
-		<%end%>
-	
-
-
-
-  <b>Album ID:</b>
-  <%= @photo.album_id %>
-  <b>Number Of Photos</b>
-  <%=@album.photos.count%>
-  <br/>
-
-
-<%unless @first%>
-<%=link_to 'previous', photo_path(@pre)%>
+	<%= form_for @photo,:remote=>true,:html=>{:style=>"display:none",:id=>'photo_description_form'} do |f| %>
+		<%= f.text_area :description, placeholder: "enter descriptions",:rows=>2 %><br/>
+		<%= f.submit 'add descripton',:class=>"btn btn-info" %>
+	<% end %>
 <%end%>
 
- <%=link_to image_tag(@photo.image.url(:medium)),photo_path(@next) unless @last%>
-<%if @last%>
-<%=image_tag @photo.image.url(:medium)%>
-<%end%>
-<br/>
- <%= @photo.description %>
+<div id="likes_count_for_photo_<%=@photo.id-%>">
+	<%=render :partial=>'likes/likes_count_for_photo',:locals=>{:like=>@like,:photo=>@photo}%>
+</div>
 
 
-
-
-
- <% if @photo.microcomments.any? %>
-      <h3>comments (<%= @photo.microcomments.count %>)</h3>
-
-  <%= render @photo.microcomments%>
-  
- <% end %>
-
-
-
-<%= form_for @microcomment, :url=>photo_path(@photo),:action=>:add_comment do |f| %>
- <%=f.text_area :content, placeholder: "enter new comment",:rows=>5 ,:cols=>30%>
- <%=f.submit  %>
- 
-<% end %>
+<%@like=Like.find(:all,:conditions => {:user_id=>current_user.id,:photo_id=>@photo.id})[0]%>	
+	<% if !@like.nil?%>
+		<div id="like_form_for_photo_<%= @photo.id -%>" style="float:left">
+			<%= render :partial=>'likes/unlike_form_for_photo',:locals=>{:like=>@like,:photo=>@photo}%>
+		</div>
+	<%else%>
+		<div id="like_form_for_photo_<%= @photo.id -%>" style="float:left">
+			<%= render :partial=> 'likes/like_form_for_photo',:locals=>{:photo => @photo}%>
+		</div>
+	<%end%>
 

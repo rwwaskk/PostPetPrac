@@ -4,6 +4,7 @@ class Micropost < ActiveRecord::Base
   has_many :microcomments
   belongs_to :user
   has_many :users_like_micropost, :through=> :likes,:foreign_key => :user_id,:source => :user
+  has_many :likes
   
   scope :desc, order("microposts.created_at DESC")
   

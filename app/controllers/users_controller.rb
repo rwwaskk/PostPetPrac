@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
 
 	def feed
+	 	@userInfo=true
 	    @micropost = current_user.microposts.build(params[:micropost])
 	    
 		#@micropost = current_user.microposts.new#build(params[:micropost])
@@ -33,9 +34,11 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@userInfo=true
 		@user = User.find(params[:id])
 		@microposts = @user.microposts
 		@micropost=Micropost.new
+		@album=Album.new
 		@microcomment=Microcomment.new
 		@count=@notifications.count
 	end
