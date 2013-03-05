@@ -1,4 +1,6 @@
-
+<div style="float:right">
+<%=render :partial=>'userInfo',:locals=>{:user=>@user} %>
+</div>
 <%= render 'microposts/form'%>
 <% if !@user.microposts.any? %>
 	<h3>no posts</h3>

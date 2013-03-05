@@ -1,12 +1,12 @@
 <ul class="thumbnails">
 	<li class="span2">
-	<%@user=User.find_by_id(params[:id])%>
-	<% if !(@user.photo.url=="/photos/original/missing.png")%>
-		<%= image_tag @user.photo.url(:small)%>
+	
+	<% if !(user.photo.url=="/photos/original/missing.png")%>
+		<%= image_tag user.photo.url(:small)%>
 	<%else%>
 		<%= image_tag "https://lh5.googleusercontent.com/-niEejNWekPM/UPSk_V4rq1I/AAAAAAAAAoc/60oFt5Dhb5c/s512/touxiang.jpg"%>
 	<%end%>
-<h5><%= current_user.name %></h5>
+<h5><%= user.name %></h5>
 <%= render 'shared/stats' %>
 <%= link_to 'send a message', :controller=>'messages',:action=>'new',:recipient_id=>@user%>
 Advertisements!
