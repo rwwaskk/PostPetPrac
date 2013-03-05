@@ -13,9 +13,7 @@
       <td class="right">by <%=link_to User.find(forum.topics.desc.first.last_post_id).name,user_path(User.find(forum.topics.desc.first.last_post_id))%>
       	at 
       					<%=forum.topics.desc.first.last_post_at%></td>  
-      <td><%= link_to "Show", forum %></td>  
-      <td><%= link_to "Edit", edit_forum_path(forum) %></td>  
-      <td><%= link_to "Destroy", forum, :confirm => 'Are you sure?', :method => :delete %></td>  
+      
     </tr>  
   <% end %>  
 </table>  

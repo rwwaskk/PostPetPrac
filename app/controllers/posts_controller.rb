@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
+  
+  
+  before_filter :set_notifications
+	def set_notifications
+  		@notifications = current_user.received_notifications
+	end
   def index
     @posts = Post.all
 
@@ -41,11 +47,16 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-
+	@topic = Topic.find(@post.topic_id)
+	@forum = Forum.find(@topic.forum_id)
+	
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
+      if @post.save 
+      	@topic.last_post_at=@post.created_at
+      		if @topic.save
+        		format.html { redirect_to forum_topic_path(@forum,@topic), notice: 'Post was successfully created.' }
+        		format.json { render json: @post, status: :created, location: @post }
+        	end
       else
         format.html { render action: "new" }
         format.json { render json: @post.errors, status: :unprocessable_entity }

@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+<%@post_user=User.find(post.user_id)%>
+
+<% if !(@post_user.photo.url=="/photos/original/missing.png")%>
+		<%= image_tag @post_user.photo.url(:small)%>
+	<%else%>
+		<%= image_tag "https://lh5.googleusercontent.com/-niEejNWekPM/UPSk_V4rq1I/AAAAAAAAAoc/60oFt5Dhb5c/s512/touxiang.jpg",:size => "36x36"%>
+	<%end%>
+<%= @post_user.name %>
+
+<p>
+  <b>Content:</b>
+  <%= post.content %>
+</p>
+<%= link_to 'Edit', edit_post_path(post) %> |
+<%= link_to 'Back', posts_path %>

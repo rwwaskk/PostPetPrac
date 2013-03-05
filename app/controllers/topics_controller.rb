@@ -48,6 +48,7 @@ class TopicsController < ApplicationController
   	@topic.last_post_id=current_user.id
   	@topic.last_post_at=Time.now
   	@topic.forum_id=params[:forum_id]
+  	@topic.user_id=current_user.id
   	if @topic.save
   		redirect_to "/forums/#{@topic.forum_id}"
   	else 

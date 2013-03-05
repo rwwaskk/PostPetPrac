@@ -1,17 +1,16 @@
 <div id="notification_<%= notification.id -%>">
-	<ul>
-		<tr>
-  			<%= notification.id%>
-			<%= notification.content %>
-			<%=notification.micropost_id%>
-			<%=link_to 'view',micropost_path(:id=>notification.micropost_id) unless notification.micropost_id.nil?%>
+	<ul class="nav">
+  			<%#= notification.id%>
+			<li><%= notification.content %></li>
+			<%#=notification.micropost_id%>
+			<li><%=link_to 'view',micropost_path(:id=>notification.micropost_id) unless notification.micropost_id.nil?%></li>
 			
 			<%if notification.micropost_id.nil?%>
-			<%=link_to 'view', followers_user_path(current_user)%>
+			<li><%=link_to 'view', followers_user_path(current_user)%></li>
 			<%end%>
 			
-			<%= link_to 'Delete',notification_path(notification),:method=>:delete,:remote=>true,
-			:onclick=>"$('#notification_#{notification.id}').fadeOut();"%>
-		</tr>
+			<li><%= link_to 'Delete',notification_path(notification),:method=>:delete,:remote=>true,
+			:onclick=>"$('#notification_#{notification.id}').fadeOut();"%></li>
+		
 	</ul>
 </div>

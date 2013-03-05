@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
 	<!-- Add New Status Form-->
 	<%=link_to 'Add New Status','#',:onclick => "$('#new_post_form').slideDown()",:class=>"btn btn-info btn-medium"%>
+
 	<%= render 'microposts/form'%>
 	
 	<!-- render users feed-->
